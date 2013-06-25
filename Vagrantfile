@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.network :public_network
+  config.omnibus.chef_version = :latest
 
   config.vm.provider :aws do |aws, override|
     override.vm.box = "dummy"
@@ -21,10 +22,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = %w{cookbooks site-cookbooks}
-    chef.add_recipe "build-essential"
-    chef.add_recipe "git"
     chef.add_recipe "ntp"
     chef.add_recipe "timezone"
     chef.add_recipe "tcpcrypt"
+    chef.add_recipe "btsync"
   end
 end

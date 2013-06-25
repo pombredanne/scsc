@@ -1,3 +1,6 @@
+include_recipe "build-essential"
+include_recipe "git"
+
 %w{iptables libcap-dev libssl-dev libnfnetlink-dev libnetfilter-queue-dev}.each do |p|
   package p
 end
