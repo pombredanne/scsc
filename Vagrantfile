@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.network :public_network
+
+  config.vm.provider :aws do |aws, override|
+    override.vm.box = "dummy"
+    override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = "#{ENV["HOME"]}/.ssh/default_ssh.id"
+    aws.endpoint = "https://api.greenqloud.com/" # trailing slash!
+    aws.access_key_id = ENV["EC2_ACCESS_KEY"]
+    aws.secret_access_key = ENV["EC2_SECRET_KEY"]
+    aws.instance_type = "t1.micro"
+    aws.ami = "qmi-b58041dd" # Ubuntu Precise
+    aws.keypair_name = "default"
+  end
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = %w{cookbooks site-cookbooks}
+    chef.add_recipe "build-essential"
+    chef.add_recipe "git"
+    chef.add_recipe "ntp"
+    chef.add_recipe "timezone"
+    chef.add_recipe "tcpcrypt"
+  end
+end
