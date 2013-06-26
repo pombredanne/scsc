@@ -1,6 +1,8 @@
 include_recipe "build-essential"
 include_recipe "git"
 
+package "libtool"
+
 src_path = ::File.join Chef::Config[:file_cache_path], "libsodium"
 
 git src_path do
@@ -9,8 +11,13 @@ git src_path do
   action :sync
 end
 
-execute "Compile and install libsodium" do
+bash "Compile and install libsodium" do
   cwd src_path
-  command "./autogen.sh; ./configure --libdir=/usr/local/lib; make; make check; make install; ldconfig"
-  not_if { ::File.exists? "/usr/lib/libsodium.so.4" }
+  code <<-EOH
+  ./autogen.sh
+  ./configure --libdir=/usr/local/lib
+  make && make check && make install
+  ldconfig
+  EOH
+  creates "/usr/local/lib/libsodium.so.4"
 end

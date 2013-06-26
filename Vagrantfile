@@ -27,5 +27,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "tcpcrypt"
     chef.add_recipe "dnscrypt-proxy"
     chef.add_recipe "btsync"
+    chef.add_recipe "gnupg2"
+    chef.add_recipe "tarsnap"
   end
 end
