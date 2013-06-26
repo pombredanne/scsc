@@ -26,6 +26,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "timezone"
     chef.add_recipe "mosh"
     chef.add_recipe "tmux"
+    chef.add_recipe "vim"
     chef.add_recipe "tcpcrypt"
     chef.add_recipe "dnscrypt-proxy"
     chef.add_recipe "btsync"
