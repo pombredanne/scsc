@@ -1,6 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
+    apache2 (1.6.6)
     apt (1.10.0)
     build-essential (1.4.0)
     chef_handler (1.1.4)
@@ -21,7 +22,8 @@ SITE
     yum (2.3.0)
 
 DEPENDENCIES
-  apt (= 1.10.0)
+  apache2 (>= 0)
+  apt (>= 0)
   build-essential (>= 0)
   git (>= 0)
   ntp (>= 0)

@@ -29,5 +29,13 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "btsync"
     chef.add_recipe "gnupg2"
     chef.add_recipe "tarsnap"
+    chef.add_recipe "apache2"
+    chef.add_recipe "apache2::mod_dav_fs"
+
+    chef.json = {
+      "apache" => {
+        "listen_ports" => ["80", "443"]
+      }
+    }
   end
 end
