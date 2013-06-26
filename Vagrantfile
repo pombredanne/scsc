@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path = %w{cookbooks site-cookbooks}
     chef.add_recipe "ntp"
     chef.add_recipe "timezone"
+    chef.add_recipe "mosh"
     chef.add_recipe "tcpcrypt"
     chef.add_recipe "dnscrypt-proxy"
     chef.add_recipe "btsync"
