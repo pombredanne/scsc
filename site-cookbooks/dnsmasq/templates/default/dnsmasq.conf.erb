@@ -1,0 +1,10 @@
+domain-needed
+bogus-priv
+no-resolv
+no-poll
+
+server=/bit/<%= node["dnsmasq"]["dot_bit_server"] %>
+server=<%= node["dnsmasq"]["server_1"] %>
+server=<%= node["dnsmasq"]["server_2"] %>
+
+address=/.dev/127.0.0.1

@@ -16,6 +16,7 @@
     "recipe[apache2]",
     "recipe[apache2::mod_dav_fs]",
     "recipe[apache2::mod_php5]",
-    "recipe[openvpn]"
+    "recipe[openvpn]",
+    "recipe[dnsmasq]"
   ]
 }

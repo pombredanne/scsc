@@ -149,7 +149,9 @@ push "redirect-gateway def1"
 # client's local DHCP server is reachable via
 # aan the default route
 # of 0.0.0.0/0.0.0.0.
-;push "redirect-gateway"
+push "redirect-gateway"
+
+push "dhcp-option DNS <%= `echo -n $(ifconfig eth0 | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }')` %>"
 
 # Certthis directive to allow different
 # clients to be iple clients
