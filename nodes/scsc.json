@@ -1,0 +1,10 @@
+{
+  "run_list": ["role[scsc]"],
+  "host": "i-46-149-18-151.compute.is-1.greenqloud.com",
+  "ca_country": "RU",
+  "ca_province": "Moscow",
+  "ca_city": "Moscow",
+  "ca_company": "Floatboth",
+  "ca_email": "floatboth@me.com",
+  "user": "ubuntu"
+}
