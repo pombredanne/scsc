@@ -1,6 +1,14 @@
 include_recipe "apache2"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
+include_recipe "apache2::mod_dav_fs"
+
+web_app "dav" do
+  template "dav.conf.erb"
+  server_name "dav.scsc"
+  port 80
+  document_root "/data/files"
+end
 
 web_app "i2p-proxy" do
   template "proxy.conf.erb"

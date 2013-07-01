@@ -14,13 +14,11 @@
     "recipe[gnupg2]",
     "recipe[tarsnap]",
     "recipe[apache2]",
-    "recipe[apache2::mod_dav_fs]",
-    "recipe[apache2::mod_php5]",
-    "recipe[apache2::mod_proxy]",
     "recipe[openvpn]",
     "recipe[dnsmasq]",
     "recipe[i2p]",
     "recipe[privoxy]",
-    "recipe[proxy]"
+    "recipe[folders]",
+    "recipe[hosts]"
   ]
 }

@@ -1,0 +1,18 @@
+<VirtualHost *:<%= @params[:port] %>>
+  ServerName <%= @params[:server_name] %>
+
+  DocumentRoot <%= @params[:document_root] %>
+  <Directory <%= @params[:document_root] %>>
+    Options Indexes MultiViews
+    AllowOverride None
+    Order deny,allow
+    Allow from all
+  </Directory>
+  <Location />
+    DAV On
+  </Location>
+
+  LogLevel info
+  ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
+  CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined
+</VirtualHost>
