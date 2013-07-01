@@ -8,3 +8,4 @@ server=<%= node["dnsmasq"]["server_1"] %>
 server=<%= node["dnsmasq"]["server_2"] %>
 
 address=/.dev/127.0.0.1
+address=/.scsc/<%= `echo -n $(ifconfig eth0 | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }')` %>

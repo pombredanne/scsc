@@ -1,0 +1,16 @@
+<VirtualHost *:<%= @params[:port] %>>
+  ServerName <%= @params[:server_name] %>
+
+  ProxyPreserveHost On
+  ProxyPass / <%= @params[:dest] %>
+  ProxyPassReverse / <%= @params[:dest] %>
+  <Proxy>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+
+  LogLevel info
+  ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
+  CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined
+</VirtualHost>
