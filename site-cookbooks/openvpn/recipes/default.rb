@@ -68,6 +68,10 @@ execute "setup ip_forwarding" do
   not_if  "cat /proc/sys/net/ipv4/ip_forward | grep -q 1"
 end
 
+execute "setup iptables" do
+  command "/sbin/iptables -t nat -A POSTROUTING -s 10.4.0.1/2 -o eth0 -j MASQUERADE"
+end
+
 template "/etc/openvpn/server.conf" do
   source "server.conf.erb"
   mode 0755

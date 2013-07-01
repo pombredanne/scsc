@@ -8,13 +8,15 @@ apt_repository "i2p" do
   key "EB2CC88B"
 end
 
-package "i2p"
+execute "Preconfigure i2p" do
+  command "echo i2p i2p/daemon boolean true | debconf-set-selections"
+end
 
-execute "Reconfigure i2p" do
-  command "dpkg-reconfigure -f noninteractive i2p"
+package "i2p" do
+  action :install
 end
 
 service "i2p" do
-  supports :status => true, :restart => true, :reload => true
+  supports :restart => true
   action [:enable, :start]
 end
