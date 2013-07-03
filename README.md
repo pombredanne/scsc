@@ -33,7 +33,7 @@ This project allows you to use a cloud server for:
 12. cd back to the key storage, do the following
         
         ssh scsc sudo /etc/openvpn/easy-rsa/make_client_package
-        scp scsc:/home/ubuntu/client.tar.gz
+        scp scsc:/home/ubuntu/client.tar.gz ./
         ssh scsc rm /home/ubuntu/client.tar.gz
         tar xvf client.tar.gz
         cp -r client client.tblk
@@ -55,4 +55,5 @@ This project allows you to use a cloud server for:
 - mail server
 - xmpp server
 - owncloud or something simpler for carddav & caldav
+- [firefox sync](http://docs.services.mozilla.com/howtos/run-sync.html)
 - [forward](https://forwardhq.com)-like script
