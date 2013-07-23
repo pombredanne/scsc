@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /opt/scsc
+
+echo ">>> Updating SCSC"
+git pull
+
+echo ">>> Running Chef"
+chef-solo -c solo.rb -j nodes/scsc.json

@@ -19,6 +19,7 @@
     "recipe[i2p]",
     "recipe[privoxy]",
     "recipe[folders]",
+    "recipe[scripts]",
     "recipe[hosts]"
   ]
 }
