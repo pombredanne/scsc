@@ -3,9 +3,13 @@ bogus-priv
 no-resolv
 no-poll
 
-server=/bit/<%= node["dnsmasq"]["dot_bit_server"] %>
-server=<%= node["dnsmasq"]["server_1"] %>
-server=<%= node["dnsmasq"]["server_2"] %>
+server=127.0.0.1#<%= node["dnsmasq"]["dnscrypt_port"] %>
+server=/pool.ntp.org/<%= node["dnsmasq"]["opennic_server_1"] %>
+server=/pool.ntp.org/<%= node["dnsmasq"]["opennic_server_2"] %>
+<% node["dnsmasq"]["opennic_domains"].each do |domain| %>
+server=/<%= domain %>/<%= node["dnsmasq"]["opennic_server_1"] %>
+server=/<%= domain %>/<%= node["dnsmasq"]["opennic_server_2"] %>
+<% end %>
 
 address=/.dev/127.0.0.1
 address=/.scsc/<%= `echo -n $(ifconfig eth0 | grep 'inet addr:' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }')` %>

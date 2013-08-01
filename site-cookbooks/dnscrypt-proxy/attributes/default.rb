@@ -1,0 +1,5 @@
+default["dnscrypt-proxy"]["local-address"]    = "127.0.0.1:2053"
+default["dnscrypt-proxy"]["provider-key"]     = "1971:7C1A:C550:6C09:F09B:ACB1:1AF7:C349:6425:2676:247F:B738:1C5A:243A:C1CC:89F4"
+default["dnscrypt-proxy"]["provider-address"] = "2.dnscrypt-cert.cloudns.com.au"
+default["dnscrypt-proxy"]["resolver-address"] = "113.20.6.2:443"
+default["dnscrypt-proxy"]["user"]             = "dnscrypt-proxy"

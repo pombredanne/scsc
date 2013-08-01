@@ -15,6 +15,7 @@
     "recipe[tarsnap]",
     "recipe[apache2]",
     "recipe[openvpn]",
+    "recipe[dnscrypt-proxy]",
     "recipe[dnsmasq]",
     "recipe[i2p]",
     "recipe[privoxy]",
