@@ -3,12 +3,12 @@
 This project allows you to use a cloud server for:
 
 - file storage, sync and access ([BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) + WebDAV), secure over OpenVPN
-- more secure Internet access (traffic is tunnelled with OpenVPN, so your ISP sees nothing, websites see your server's IP)
-- more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network)
+- more secure Internet access (your web traffic is tunnelled through your cloud server with OpenVPN, DNS queires from the server are using [DNSCrypt](http://dnscrypt.org/))
+- more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network, [Tor](https://www.torproject.org/) hidden services)
 
 ## Installation
 
-1. Establish a place where you can securely store cryptographic keys. [TrueCrypt](http://www.truecrypt.org) with [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive is strongly recommended. *Note: DO NOT USE THE FAT FILESYSTEM for this partition, it doesn't store file permissions, SSH won't use a key from it.*
+1. Establish a place where you can securely store cryptographic keys. [TrueCrypt](http://www.truecrypt.org) with [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive is strongly recommended. *Note: SSH won't use a key from the FAT file system, you have to copy it to your disk to use for installation/administration and remove the copy after use.*
 2. Sign up for a cloud server hosting provider. [GreenQloud](http://greenqloud.com) is strongly recommended.
 3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa`) with empty passphrase.
 4. Send the public key to the hosting provider. For GreenQloud: install [euca2ools](https://github.com/eucalyptus/euca2ools), sign in to my.greenqloud.com, User → API Access → Credentials → Download .zip, then something like this:
@@ -36,15 +36,15 @@ This project allows you to use a cloud server for:
         scp scsc:/home/ubuntu/client.tar.gz ./
         ssh scsc rm /home/ubuntu/client.tar.gz
         tar xvf client.tar.gz
+        # The following is for Tunnelblick only:
         cp -r client client.tblk
         rm client.tblk/client.csr
         
-12. Open client.tblk in Tunnelblick, connect.
-13. Use privoxy.scsc:8118 as the HTTP proxy in your browser to access .i2p.
+12. Open `client.tblk` in Tunnelblick (just `client` is for other OpenVPN clients), connect.
+13. Use `privoxy.scsc:8118` as the HTTP proxy in your browser to access .i2p and .onion sites.
 
 ## TODO
 
-- tor via privoxy for .onion sites + proxy setting to use for all sites
 - tarsnap backup and restore
 - bitcoind + coinpunk
 - bitmessage + bmwrapper
