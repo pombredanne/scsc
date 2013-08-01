@@ -8,10 +8,18 @@ This project allows you to use a cloud server for:
 
 ## Installation
 
-1. Establish a place where you can securely store cryptographic keys. [TrueCrypt](http://www.truecrypt.org) with [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive is strongly recommended. *Note: SSH won't use a key from the FAT file system, you have to copy it to your disk to use for installation/administration and remove the copy after use.*
-2. Sign up for a cloud server hosting provider. [GreenQloud](http://greenqloud.com) is strongly recommended.
-3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa`) with empty passphrase.
-4. Send the public key to the hosting provider. For GreenQloud: install [euca2ools](https://github.com/eucalyptus/euca2ools), sign in to my.greenqloud.com, User → API Access → Credentials → Download .zip, then something like this:
+1. Establish a place where you can securely store cryptographic keys.  
+   [TrueCrypt](http://www.truecrypt.org) with [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive or SD card is strongly recommended.  
+   Get a second drive, make the same kind of partition, backup the original one there after setup is completed.  
+   **Requirement**: Don't ever forget the password to this volume!  
+   **Note**: SSH won't use a key from the FAT file system, you have to copy it to your disk to use for installation/administration and remove the copy after use.   
+   **Protip**: store a [KeePassX](https://www.keepassx.org/) database of passwords there.
+   Yes, even if you're usually using something like 1Password, make a KeePassX database for scsc-related passwords.
+2. Sign up for a cloud server hosting provider.
+   [GreenQloud](http://greenqloud.com) is strongly recommended.
+3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa`) with a passphrase.
+4. Send the public key to the hosting provider.  
+   For GreenQloud: install [euca2ools](https://github.com/eucalyptus/euca2ools), sign in to my.greenqloud.com, User → API Access → Credentials → Download .zip, then something like this:
         
         mv ~/Downloads/gq_credentials* .
         unzip gq_credentials*
@@ -27,8 +35,10 @@ This project allows you to use a cloud server for:
           User ubuntu
           IdentityFile "/Volumes/USB DRIVE/id_rsa"
         
-8. `ssh scsc`, trust the fingerprint
-9. Run `curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | bash` there
+8. `ssh scsc`, check the fingerprint, say yes.
+9. Run `curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | bash` there.
+   That's the installation process.
+   Some things are compiled from source, so it's not lightning fast.
 10. Install an OpenVPN client (OS X: [Tunnelblick](http://code.google.com/p/tunnelblick/wiki/DownloadsEntry?tm=2)) while you're waiting.
 11. When it's done, do the following on the local machine (in the key storage directory)
         
