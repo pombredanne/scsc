@@ -2,7 +2,7 @@ SITE
   remote: http://community.opscode.com/api/v1
   specs:
     apache2 (1.6.6)
-    apt (1.10.0)
+    apt (2.0.0)
     build-essential (1.4.0)
     chef_handler (1.1.4)
     dmg (1.1.0)
