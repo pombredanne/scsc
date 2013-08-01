@@ -11,6 +11,6 @@ end
 package "btsync"
 
 service "btsync" do
-  supports :restart => true
+  supports [:restart, :reload, :status]
   action [:enable, :start]
 end

@@ -18,6 +18,7 @@
     "recipe[dnscrypt-proxy]",
     "recipe[dnsmasq]",
     "recipe[i2p]",
+    "recipe[tor]",
     "recipe[privoxy]",
     "recipe[folders]",
     "recipe[scripts]",

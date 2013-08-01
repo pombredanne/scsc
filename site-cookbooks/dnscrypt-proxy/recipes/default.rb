@@ -30,12 +30,13 @@ end
 
 template "/etc/init/dnscrypt-proxy.conf" do
   source "dnscrypt-proxy.conf.erb"
-  owner "root"
+  owner node["dnscrypt-proxy"]["user"]
+  mode "0600"
   notifies :restart, "service[dnscrypt-proxy]"
 end
 
 service "dnscrypt-proxy" do
   provider Chef::Provider::Service::Upstart
-  supports :status => true, :restart => true, :reload => true
+  supports [:restart, :reload, :status]
   action [:enable, :start]
 end

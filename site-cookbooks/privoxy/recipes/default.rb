@@ -1,12 +1,14 @@
 package "privoxy"
 
 service "privoxy" do
-  supports :restart => true
+  supports [:restart, :reload, :status]
   action [:enable, :start]
 end
 
 template "/etc/privoxy/config" do
   source "config.erb"
-  owner "root"
+  owner "privoxy"
+  group "privoxy"
+  mode "0600"
   notifies :restart, "service[privoxy]"
 end

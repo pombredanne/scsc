@@ -20,10 +20,12 @@ execute "Compile tcpcrypt" do
   not_if { ::File.exists? ::File.join(src_code_path, "src/tcpcryptd") }
 end
 
-cookbook_file "/etc/init/tcpcrypt.conf"
+cookbook_file "/etc/init/tcpcrypt.conf" do
+  mode "0600"
+end
 
 service "tcpcrypt" do
   provider Chef::Provider::Service::Upstart
-  supports :status => true, :restart => true, :reload => true
+  supports [:restart, :reload, :status]
   action [:enable, :start]
 end

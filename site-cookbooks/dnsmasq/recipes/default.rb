@@ -1,13 +1,14 @@
 package "dnsmasq"
 
 service "dnsmasq" do
-  supports :restart => true
+  supports [:restart, :reload, :status]
   action [:enable, :start]
 end
 
 template "/etc/dnsmasq.conf" do
   source "dnsmasq.conf.erb"
   owner "root"
+  mode "0600"
   notifies :restart, "service[dnsmasq]"
 end
 
