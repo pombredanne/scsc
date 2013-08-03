@@ -1,6 +1,7 @@
-file_cache_path           "/tmp/chef-solo"
-data_bag_path             "/tmp/chef-solo/data_bags"
-encrypted_data_bag_secret "/tmp/chef-solo/data_bag_key"
-cookbook_path             [ "/tmp/chef-solo/site-cookbooks",
-                            "/tmp/chef-solo/cookbooks" ]
-role_path                 "/tmp/chef-solo/roles"
+root = File.absolute_path(File.dirname(__FILE__))
+file_cache_path root
+cookbook_path [File.join(root, 'site-cookbooks'),
+               File.join(root, 'cookbooks')]
+role_path File.join(root, 'roles')
+# data_bag_path File.join(root, 'data_bags')
+# encrypted_data_bag_secret File.join(root, 'data_bag_key')

@@ -5,11 +5,14 @@ if [[ ! -d /opt/scsc ]]; then
     echo "You must run this script as root (using sudo)"
     exit
   fi
+
+  export DEBIAN_FRONTEND=noninteractive
+
   echo ">>> Updating package index"
   apt-get update
 
   echo ">>> Installing Git"
-  yes | apt-get install git
+  apt-get install git
 
   echo ">>> Installing Chef"
   curl -L https://www.opscode.com/chef/install.sh | bash
