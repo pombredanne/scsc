@@ -19,5 +19,5 @@ bash "Compile and install libsodium" do
   make && make check && make install
   ldconfig
   EOH
-  creates "/usr/lib/libsodium.so.4"
+  creates "/usr/local/lib/libsodium.so.4"
 end
