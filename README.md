@@ -35,7 +35,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 
 1. Create a security group, name it `scsc`, open up SSH (tcp port 22) and OpenVPN (udp port 1194).
 2. Create an instance with Ubuntu Server 12.04 LTS, the security group `scsc` and keypair `scsc`.
-3. Add the instance to your `~/.ssh/config` like this
+3. Add the instance to your `~/.ssh/config` like this (don't forget to change the hostname):
         
         Host scsc
           Hostname i-12-34-56-78.compute.is-1.greenqloud.com
@@ -43,7 +43,11 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
           IdentityFile "/Volumes/USB DRIVE/id_rsa"
         
 4. `ssh scsc`, check the fingerprint, say yes.
-5. Run `curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | sudo bash` there.
+5. Run the following commands on the server (again, don't forget to change the hostname):
+        
+        echo "i-12-34-56-78.compute.is-1.greenqloud.com" > /home/ubuntu/hostname
+        curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | sudo bash
+   
    That's the installation process.
    Some things are compiled from source, so it's not lightning fast.
    You can start installing VPN client apps while it's running.
