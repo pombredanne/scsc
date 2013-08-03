@@ -1,9 +1,9 @@
-# scsc – Secure Cloud Starter Kit
+# scsc – Secure Cloud Script Collection
 
-This thing allows you to use a cloud server for:
+This starter kit allows you to use a cloud server (VPS) for:
 
 - file storage, sync and access ([BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) + WebDAV), secure over OpenVPN
-- more secure Internet access (your web traffic is tunnelled through your cloud server with OpenVPN, DNS queires from the server are using [DNSCrypt](http://dnscrypt.org/))
+- more secure Internet access (your web traffic is tunnelled through your cloud server with OpenVPN, DNS queires are resolved from [CloudNS](https://cloudns.com.au/) using [DNSCrypt](http://dnscrypt.org/))
 - more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network, [Tor](https://www.torproject.org/) hidden services)
 
 ## Setup
@@ -73,6 +73,9 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 ### Browser setup
 
 1. Use `privoxy.scsc:8118` as the HTTP proxy in your browser to access .i2p and .onion sites.
+
+*Note*: SCSC intentionally doesn't provide a setting to use Tor for everything.
+For privacy, use the Tor Browser Bundle on your local machine.
 
 ## TODO
 
