@@ -43,7 +43,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
           IdentityFile "/Volumes/USB DRIVE/id_rsa"
         
 4. `ssh scsc`, check the fingerprint, say yes.
-5. Run `curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | bash` there.
+5. Run `curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | sudo bash` there.
    That's the installation process.
    Some things are compiled from source, so it's not lightning fast.
    You can start installing VPN client apps while it's running.
