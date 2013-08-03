@@ -4,9 +4,10 @@
   "json_class": "Chef::Role",
   "description": "Secure Cloud Starter Kit",
   "run_list": [
+    "recipe[folders]",
+    "recipe[scripts]",
     "recipe[ntp]",
     "recipe[timezone]",
-    "recipe[mosh]",
     "recipe[tmux]",
     "recipe[vim]",
     "recipe[tcpcrypt]",
@@ -20,8 +21,6 @@
     "recipe[i2p]",
     "recipe[tor]",
     "recipe[privoxy]",
-    "recipe[folders]",
-    "recipe[scripts]",
     "recipe[hosts]"
   ]
 }
