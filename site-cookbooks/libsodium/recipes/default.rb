@@ -15,9 +15,9 @@ bash "Compile and install libsodium" do
   cwd src_path
   code <<-EOH
   ./autogen.sh
-  ./configure --libdir=/usr/local/lib
+  ./configure
   make && make check && make install
   ldconfig
   EOH
-  creates "/usr/local/lib/libsodium.so.4"
+  creates "/usr/lib/libsodium.so.4"
 end
