@@ -102,7 +102,7 @@ key client.key
 # Select a cryptographic cipher.
 # If the cipher option is used on the server
 # then you must also specify it here.
-;cipher x
+cipher <%= node["openvpn"]["cipher"] %>
 
 # Enable compression on the VPN link.
 # Don't enable this unless it is also

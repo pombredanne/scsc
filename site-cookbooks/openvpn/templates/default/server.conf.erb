@@ -179,9 +179,7 @@ keepalive 10 120
 # Select a cryptographic cipher.
 # This config item must be copied to
 # the client config file as well.
-;cipher BF-CBC        # Blowfish (default)
-;cipher AES-128-CBC   # AES
-;cipher DES-EDE3-CBC  # Triple-DES
+cipher <%= node["openvpn"]["cipher"] %>
 
 # Enable compression on the VPN link.
 # If you enable it here, you must also
@@ -197,8 +195,8 @@ comp-lzo
 #
 # You can uncomment this out on
 # non-Windows systems.
-;user nobody
-;group nobody
+user nobody
+group nobody
 
 # The persist options will try to avoid
 # accessing certain resources on restart
