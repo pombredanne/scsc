@@ -33,19 +33,12 @@ dev tun
 # Are we connecting to a TCP or
 # UDP server?  Use the same setting as
 # on the server.
-;proto tcp
-proto udp
+proto <%= node["openvpn"]["proto"] %>
 
 # The hostname/IP and port of the server.
 # You can have multiple remote entries
 # to load balance between the servers.
-remote <%= @node[:host] %>
-;remote my-server-2 1194
-
-# Choose a random host from the remote
-# list for load-balancing.  Otherwise
-# try hosts in the order specified.
-;remote-random
+remote <%= `hostname`.strip %> <%= node["openvpn"]["port"] %>
 
 # Keep trying indefinitely to resolve the
 # host name of the OpenVPN server.  Very useful

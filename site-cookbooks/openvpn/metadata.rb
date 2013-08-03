@@ -1,0 +1,2 @@
+depends "hostname"
+supports "ubuntu"

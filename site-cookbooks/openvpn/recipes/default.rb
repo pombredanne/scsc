@@ -4,9 +4,11 @@
 #
 # 
 # Copyright 2009, James Golick
+#           2013, Greg V
 #
 # Distributable under the terms of the MIT license.
-#
+
+include_recipe "hostname"
 
 package "openvpn" do
   action :install

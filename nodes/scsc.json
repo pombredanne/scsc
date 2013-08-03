@@ -1,6 +1,5 @@
 {
   "run_list": ["role[scsc]"],
-  "host": "localhost",
   "ca_country": "RU",
   "ca_province": "Moscow",
   "ca_city": "Moscow",

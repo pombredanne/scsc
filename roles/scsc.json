@@ -4,6 +4,7 @@
   "json_class": "Chef::Role",
   "description": "Secure Cloud Starter Kit",
   "run_list": [
+    "recipe[hostname]",
     "recipe[folders]",
     "recipe[scripts]",
     "recipe[ntp]",
