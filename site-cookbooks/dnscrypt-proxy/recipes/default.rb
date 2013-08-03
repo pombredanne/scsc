@@ -23,8 +23,10 @@ bash "Compile and install dnscrypt-proxy" do
 end
 
 user node["dnscrypt-proxy"]["user"] do
+  supports :manage_home => true
   shell "/bin/false"
   system true
+  home "/home/#{node["dnscrypt-proxy"]["user"]}"
   action :create
 end
 
