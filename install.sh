@@ -1,8 +1,11 @@
 #!/bin/bash
 
 if [[ ! -d /opt/scsc ]]; then
+  echo ">>> Updating package index"
+  sudo apt-get update
+
   echo ">>> Installing Git"
-  sudo apt-get install git
+  sudo apt-get install --force-yes git
 
   echo ">>> Installing Chef"
   curl -L https://www.opscode.com/chef/install.sh | bash
