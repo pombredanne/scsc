@@ -5,7 +5,7 @@ if [[ ! -d /opt/scsc ]]; then
   sudo apt-get update
 
   echo ">>> Installing Git"
-  sudo apt-get install --force-yes git
+  yes | sudo apt-get install git
 
   echo ">>> Installing Chef"
   curl -L https://www.opscode.com/chef/install.sh | bash
