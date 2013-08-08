@@ -1,7 +1,7 @@
 include_recipe "mercurial"
 include_recipe "python"
 
-%w(python-dev sqlite3 libssl-dev).each do |p|
+%w(sqlite3 libssl-dev).each do |p|
   package p
 end
 
