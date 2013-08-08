@@ -1,0 +1,18 @@
+<VirtualHost *:<%= @params[:port] %>>
+  ServerName <%= @params[:server_name] %>
+
+  DocumentRoot <%= @params[:document_root] %>
+  <Directory <%= @params[:document_root] %>>
+    Order deny,allow
+    Allow from all
+  </Directory>
+
+  WSGIProcessGroup <%= @params[:process_group] %>
+  WSGIDaemonProcess <%= @params[:process] %> user=<%= @params[:process_user] %> group=<%= @params[:process_user_group] %> processes=<%= @params[:processes] %> threads=<%= @params[:threads] %>
+  WSGIPassAuthorization On
+  WSGIScriptAlias / <%= ::File.join @params[:document_root], @params[:wsgi_script] %>
+
+  LogLevel info
+  ErrorLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-error.log
+  CustomLog <%= node['apache']['log_dir'] %>/<%= @params[:name] %>-access.log combined
+</VirtualHost>

@@ -5,6 +5,8 @@ site "http://community.opscode.com/api/v1"
 
 cookbook "build-essential"
 cookbook "git"
+cookbook "mercurial"
+cookbook "python"
 cookbook "apt"
 cookbook "ntp"
 cookbook "timezone"
