@@ -10,6 +10,8 @@
   "use_upnp": false,
   "download_limit": 0,
   "upload_limit": 0,
-  "webui": { },
+  "webui": {
+    "listen": "127.0.0.1:<%= node["btsync"]["webui-port"] %>"
+  },
   "shared_folders" : [ ]
 }
