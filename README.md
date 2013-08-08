@@ -6,6 +6,9 @@ This starter kit allows you to use a cloud server (VPS) for:
 - more secure Internet access (your web traffic is tunnelled through your cloud server with OpenVPN, DNS queires are resolved from [CloudNS](https://cloudns.com.au/) using [DNSCrypt](http://dnscrypt.org/))
 - more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network, [Tor](https://www.torproject.org/) hidden services)
 
+*Disclaimer*: this is designed to make you less reliant on public cloud services such as Dropbox, not to make you anonymous.
+Even though using a server set up with this script gives you access to hidden sites, it's not what you should use for serious anonymity.
+
 ## Setup
 
 ### Requirements
