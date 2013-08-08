@@ -10,7 +10,7 @@ end
 
 directory "/data/files" do
   group "data"
-  mode "0660"
+  mode "0770"
   action :create
 end
 
