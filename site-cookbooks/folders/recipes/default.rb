@@ -4,13 +4,13 @@ end
 
 directory "/data" do
   group "data"
-  mode "0060"
+  mode "0770"
   action :create
 end
 
 directory "/data/files" do
   group "data"
-  mode "0060"
+  mode "0660"
   action :create
 end
 
