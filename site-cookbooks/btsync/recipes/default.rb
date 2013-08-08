@@ -9,6 +9,10 @@ apt_repository "btsync" do
   key "D294A752"
 end
 
+execute "Preconfigure btsync" do
+  command "echo btsync btsync/managed-configuration boolean false | debconf-set-selections"
+end
+
 package "btsync"
 
 group node["btsync"]["group"] do
@@ -33,8 +37,8 @@ directory "/var/lib/btsync" do
   group node["btsync"]["group"]
 end
 
-template "/etc/default/btsync" do
-  source "default.erb"
+template "/etc/btsync/config.conf" do
+  source "conf.json.erb"
   owner "root"
   group "root"
   mode "0640"
