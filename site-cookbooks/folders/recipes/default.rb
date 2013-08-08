@@ -3,13 +3,13 @@ group "data" do
 end
 
 directory "/data" do
-  gid "data"
+  group "data"
   mode "0060"
   action :create
 end
 
 directory "/data/files" do
-  gid "data"
+  group "data"
   mode "0060"
   action :create
 end

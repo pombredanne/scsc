@@ -28,6 +28,11 @@ group "data" do
   append true
 end
 
+directory "/var/lib/btsync" do
+  owner node["btsync"]["user"]
+  group node["btsync"]["group"]
+end
+
 template "/etc/default/btsync" do
   source "default.erb"
   owner "root"
