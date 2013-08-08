@@ -3,6 +3,7 @@
 This starter kit allows you to use a cloud server (VPS) for:
 
 - file storage, sync and access ([BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) + WebDAV), secure over OpenVPN
+- Firefox Sync
 - more secure Internet access (your web traffic is tunnelled through your cloud server with OpenVPN, DNS queires are resolved from [CloudNS](https://cloudns.com.au/) using [DNSCrypt](http://dnscrypt.org/))
 - more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network, [Tor](https://www.torproject.org/) hidden services)
 
