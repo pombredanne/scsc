@@ -85,10 +85,13 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 ### BitTorrent Sync and WebDAV
 
 BitTorrent Sync is available at [btsync.scsc](http://btsync.scsc).  
-Login with admin/AdminPassword.
-This password doesn't actually matter, because you can only access it through the VPN.  
 Use the folder /data/files for syncing.
 This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc).
+
+### Firefox Sync
+
+Firefox Sync (Mozilla Weave) is available an weave.scsc.  
+[iCab Mobile](http://www.icab-mobile.de/) on iOS supports Firefox Sync.
 
 ## TODO
 
@@ -98,4 +101,3 @@ This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc
 - mail server
 - xmpp server
 - owncloud or something simpler for carddav & caldav
-- [firefox sync](http://docs.services.mozilla.com/howtos/run-sync.html)
