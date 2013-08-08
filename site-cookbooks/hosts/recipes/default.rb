@@ -6,6 +6,13 @@ include_recipe "apache2::mod_wsgi"
 include_recipe "i2p"
 include_recipe "btsync"
 include_recipe "firefox-sync"
+include_recipe "folders"
+
+group "data" do
+  action :modify
+  members "www-data"
+  append true
+end
 
 web_app "dav" do
   template "dav.conf.erb"

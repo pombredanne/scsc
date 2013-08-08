@@ -30,9 +30,15 @@ user node["firefox-sync"]["user"] do
   action :create
 end
 
+group "data" do
+  action :modify
+  members node["firefox-sync"]["user"]
+  append true
+end
+
 template ::File.join(src_path, "etc/sync.conf") do
   source "sync.conf.erb"
   owner node["firefox-sync"]["user"]
   group node["firefox-sync"]["group"]
-  mode "0600"
+  mode "0644"
 end
