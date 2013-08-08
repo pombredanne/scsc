@@ -19,21 +19,11 @@ bash "Compile and install firefox-sync" do
   creates ::File.join(src_path, "bin/paster")
 end
 
-group node["firefox-sync"]["group"] do
-  action :create
-end
-
 user node["firefox-sync"]["user"] do
   shell "/bin/false"
-  gid node["firefox-sync"]["group"]
+  gid "data"
   system true
   action :create
-end
-
-group "data" do
-  action :modify
-  members node["firefox-sync"]["user"]
-  append true
 end
 
 template ::File.join(src_path, "etc/sync.conf") do
