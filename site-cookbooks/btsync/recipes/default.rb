@@ -39,9 +39,9 @@ end
 
 template "/etc/btsync/config.conf" do
   source "conf.json.erb"
-  owner "root"
-  group "root"
-  mode "0640"
+  owner node["btsync"]["user"]
+  group node["btsync"]["group"]
+  mode "0400"
 end
 
 service "btsync" do
