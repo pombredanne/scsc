@@ -44,7 +44,7 @@ web_app "weave-wsgi" do
   process "sync"
   process_group "sync"
   process_user "sync"
-  process_user_group "sync"
+  process_user_group "data"
   processes 2
   threads 25
 end
