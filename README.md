@@ -7,7 +7,8 @@ This starter kit allows you to use a cloud server (VPS) for:
 - more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network, [Tor](https://www.torproject.org/) hidden services)
 
 *Disclaimer*: this is designed to make you less reliant on public cloud services such as Dropbox, not to make you anonymous.
-Even though using a server set up with this script gives you access to hidden sites, it's not what you should use for serious anonymity.
+SCSC intentionally doesn't provide a setting to use Tor for everything.
+For anonymity, use the Tor Browser Bundle (or even better, Tails) on your local machine.
 
 ## Setup
 
@@ -76,9 +77,18 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 ### Browser setup
 
 1. Use `privoxy.scsc:8118` as the HTTP proxy in your browser to access .i2p and .onion sites.
+   Ignore the proxy for .scsc and .dev (.scsc resolves to the VPS, .dev to localhost).
+   ![Firefox proxy settings screenshot](https://files.app.net/7cgckJ3L)
 
-*Note*: SCSC intentionally doesn't provide a setting to use Tor for everything.
-For privacy, use the Tor Browser Bundle on your local machine.
+## Usage
+
+### BitTorrent Sync and WebDAV
+
+BitTorrent Sync is available at [btsync.scsc](http://btsync.scsc).  
+Login with admin/AdminPassword.
+This password doesn't actually matter, because you can only access it through the VPN.  
+Use the folder /data/files for syncing.
+This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc).
 
 ## TODO
 
