@@ -15,3 +15,7 @@ directory "/data/files" do
 end
 
 # Users are added to the data group in other cookbooks
+
+directory "/opt/scsc-plugins" do
+  action :create
+end

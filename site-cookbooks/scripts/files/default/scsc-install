@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+  echo "Usage: scsc-install <github repo or git url>"
+  exit 1
+fi
+
+if [[ $(whoami) != root ]]; then
+  echo "You must run this script as root (using sudo)"
+  exit 1
+fi
+
+if [[ "$1" == *"://"* ]]; then
+  REPO_URL=$1
+else
+  REPO_URL="https://github.com/$1.git"
+fi
+
+REPO_NAME=$(echo $1 | awk -F/ '{ print $(NF-1) "__" $NF }')
+DIR_PATH="/opt/scsc-plugins/$REPO_NAME"
+
+if [[ ! -d "$DIR_PATH" ]]; then
+  git clone $REPO_URL $DIR_PATH
+  cd $DIR_PATH
+else
+  cd $DIR_PATH
+  git pull
+fi
+
+chef-solo -c solo.rb -j nodes/scsc.json
