@@ -25,6 +25,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
    **Protip**: store a [KeePassX](https://www.keepassx.org/) database there.
 2. Sign up for a trustworthy cloud server hosting provider in a country that has a good privacy record.
    That is, [GreenQloud](http://greenqloud.com) :-)
+   Or [a provider that accepts bitcoin](https://en.bitcoin.it/wiki/Virtual_private_server).
 3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa`) with a passphrase.
 4. Send the public key to the hosting provider.  
    For GreenQloud: install [euca2ools](https://github.com/eucalyptus/euca2ools), sign in to my.greenqloud.com, User → API Access → Credentials → Download .zip, then something like this:
@@ -93,6 +94,11 @@ This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc
 
 Firefox Sync (Mozilla Weave) is available an weave.scsc.  
 [iCab Mobile](http://www.icab-mobile.de/) on iOS supports Firefox Sync.
+
+### I2P
+
+The I2P router console is available on [i2p.scsc](http://i2p.scsc).  
+You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor hidden services.
 
 ## TODO
 
