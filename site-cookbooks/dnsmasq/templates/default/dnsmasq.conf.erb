@@ -4,11 +4,25 @@ no-resolv
 no-poll
 
 server=127.0.0.1#<%= node["dnsmasq"]["dnscrypt_port"] %>
-server=/pool.ntp.org/<%= node["dnsmasq"]["opennic_server_1"] %>
-server=/pool.ntp.org/<%= node["dnsmasq"]["opennic_server_2"] %>
+
+<% node["dnsmasq"]["opennic_servers"].each do |server| %>
+server=/pool.ntp.org/<%= server %>
+<% end %>
+
 <% node["dnsmasq"]["opennic_domains"].each do |domain| %>
-server=/<%= domain %>/<%= node["dnsmasq"]["opennic_server_1"] %>
-server=/<%= domain %>/<%= node["dnsmasq"]["opennic_server_2"] %>
+  <% node["dnsmasq"]["opennic_servers"].each do |server| %>
+server=/<%= domain %>/<%= server %>
+  <% end %>
+<% end %>
+
+<% node["dnsmasq"]["new_nations_domains"].each do |domain| %>
+  <% node["dnsmasq"]["new_nations_servers"].each do |server| %>
+server=/<%= domain %>/<%= server %>
+  <% end %>
+<% end %>
+
+<% node["dnsmasq"]["42_servers"].each do |server| %>
+server=/.42/<%= server %>
 <% end %>
 
 address=/.dev/127.0.0.1
