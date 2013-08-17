@@ -6,7 +6,7 @@
   ProxyPassReverse / <%= @params[:dest] %>
   <Proxy>
     Order deny,allow
-    Allow from all
+    Allow from 10.17.0
   </Proxy>
 
 
