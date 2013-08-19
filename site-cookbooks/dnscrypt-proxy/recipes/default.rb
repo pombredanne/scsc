@@ -3,6 +3,7 @@ include_recipe "git"
 include_recipe "libsodium"
 
 package "libtool"
+package "libldns-dev"
 
 src_path = ::File.join Chef::Config[:file_cache_path], "dnscrypt-proxy"
 
@@ -16,8 +17,10 @@ bash "Compile and install dnscrypt-proxy" do
   cwd src_path
   code <<-EOH
   ./autogen.sh
-  ./configure
+  ./configure --enable-plugins
   make && make install
+  cp apparmor.profile.dnscrypt-proxy /etc/apparmor.d/usr.local.sbin.dnscrypt-proxy
+  aa-enforce /usr/local/sbin/dnscrypt-proxy
   EOH
   creates "/usr/local/sbin/dnscrypt-proxy"
 end
