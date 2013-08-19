@@ -33,7 +33,7 @@ end
 %w(primary secondary).each do |rslv|
   template "/etc/init/dnscrypt-proxy-#{rslv}.conf" do
     source "dnscrypt-proxy.conf.erb"
-    resolver rslv
+    variables(:resolver => rslv)
     owner node["dnscrypt-proxy"]["user"]
     mode "0600"
     notifies :restart, "service[dnscrypt-proxy-#{rslv}]"
