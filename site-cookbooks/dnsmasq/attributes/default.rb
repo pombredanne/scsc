@@ -6,4 +6,4 @@ default["dnsmasq"]["new_nations_domains"] = %w(.uu .ti .te .ku)
 
 default["dnsmasq"]["42_servers"] = %w(81.93.248.69 81.93.248.68 91.194.60.196 193.17.192.53 109.235.51.12 85.17.236.67)
 
-default["dnsmasq"]["dnscrypt_port"] = "2053"
+default["dnsmasq"]["dnscrypt_ports"] = %w(2053 3053)

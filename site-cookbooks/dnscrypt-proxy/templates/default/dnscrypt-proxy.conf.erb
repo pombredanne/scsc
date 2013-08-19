@@ -1,5 +1,5 @@
 #!upstart
-description "dnscrypt-proxy"
+description "dnscrypt-proxy-<%= @params[:resolver] %>"
 
 start on (local-filesystems and started dbus and stopped udevtrigger)
 stop on runlevel [016]
@@ -7,5 +7,6 @@ stop on runlevel [016]
 respawn
 
 script
-  exec /usr/local/sbin/dnscrypt-proxy --user=<%= node["dnscrypt-proxy"]["user"] %> --local-address=<%= node["dnscrypt-proxy"]["local-address"] %> --provider-key=<%= node["dnscrypt-proxy"]["provider-key"] %> --provider-name=<%= node["dnscrypt-proxy"]["provider-address"] %> --resolver-address=<%= node["dnscrypt-proxy"]["resolver-address"] %>
+  <% p = node["dnscrypt-proxy"][@params[:resolver]] %>
+  exec /usr/local/sbin/dnscrypt-proxy --user=<%= node["dnscrypt-proxy"]["user"] %> --local-address=<%= p["local-address"] %> --provider-key=<%= p["provider-key"] %> --provider-name=<%= p["provider-address"] %> --resolver-address=<%= p["resolver-address"] %>
 end script

@@ -3,10 +3,13 @@ bogus-priv
 no-resolv
 no-poll
 
-server=127.0.0.1#<%= node["dnsmasq"]["dnscrypt_port"] %>
+<% node["dnsmasq"]["dnscrypt_ports"].each do |port| %>
+server=127.0.0.1#<%= port %>
+<% end %>
 
 <% node["dnsmasq"]["opennic_servers"].each do |server| %>
 server=/pool.ntp.org/<%= server %>
+server=/github.com/<%= server %>
 <% end %>
 
 <% node["dnsmasq"]["opennic_domains"].each do |domain| %>

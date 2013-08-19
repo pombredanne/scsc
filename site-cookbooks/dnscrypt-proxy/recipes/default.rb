@@ -30,15 +30,18 @@ user node["dnscrypt-proxy"]["user"] do
   action :create
 end
 
-template "/etc/init/dnscrypt-proxy.conf" do
-  source "dnscrypt-proxy.conf.erb"
-  owner node["dnscrypt-proxy"]["user"]
-  mode "0600"
-  notifies :restart, "service[dnscrypt-proxy]"
-end
+%w(primary secondary).each do |rslv|
+  template "/etc/init/dnscrypt-proxy-#{rslv}.conf" do
+    source "dnscrypt-proxy.conf.erb"
+    resolver rslv
+    owner node["dnscrypt-proxy"]["user"]
+    mode "0600"
+    notifies :restart, "service[dnscrypt-proxy-#{rslv}]"
+  end
 
-service "dnscrypt-proxy" do
-  provider Chef::Provider::Service::Upstart
-  supports [:restart, :reload, :status]
-  action [:enable, :start]
+  service "dnscrypt-proxy-#{rslv}" do
+    provider Chef::Provider::Service::Upstart
+    supports [:restart, :reload, :status]
+    action [:enable, :start]
+  end
 end
