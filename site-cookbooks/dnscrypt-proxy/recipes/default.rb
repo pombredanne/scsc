@@ -4,6 +4,7 @@ include_recipe "libsodium"
 
 package "libtool"
 package "libldns-dev"
+package "apparmor-utils"
 
 src_path = ::File.join Chef::Config[:file_cache_path], "dnscrypt-proxy"
 
@@ -19,8 +20,10 @@ bash "Compile and install dnscrypt-proxy" do
   ./autogen.sh
   ./configure --enable-plugins
   make && make install
-  cp apparmor.profile.dnscrypt-proxy /etc/apparmor.d/usr.local.sbin.dnscrypt-proxy
+  cat apparmor.profile.dnscrypt-proxy | grep -v block_suspend > /etc/apparmor.d/usr.local.sbin.dnscrypt-proxy
   aa-enforce /usr/local/sbin/dnscrypt-proxy
+  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
+  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
   EOH
   creates "/usr/local/sbin/dnscrypt-proxy"
 end
