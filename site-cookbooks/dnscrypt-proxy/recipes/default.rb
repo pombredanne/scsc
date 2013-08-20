@@ -42,7 +42,7 @@ end
 
 bash "Enforce apparmor for dnscrypt-proxy" do
   code <<-EOH
-  aa-complain /usr/local/sbin/dnscrypt-proxy
+  aa-enforce /usr/local/sbin/dnscrypt-proxy
   EOH
 end
 
