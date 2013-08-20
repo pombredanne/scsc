@@ -12,6 +12,13 @@ template "/etc/dnsmasq.conf" do
   notifies :restart, "service[dnsmasq]"
 end
 
+template "/etc/default/dnsmasq" do
+  source "default.erb"
+  owner "root"
+  mode "0600"
+  notifies :restart, "service[dnsmasq]"
+end
+
 dns_conf_path = "/etc/resolvconf/resolv.conf.d/head"
 dns_line = "nameserver 127.0.0.1"
 

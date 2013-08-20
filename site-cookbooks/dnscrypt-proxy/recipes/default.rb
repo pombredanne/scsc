@@ -20,8 +20,6 @@ bash "Compile and install dnscrypt-proxy" do
   ./autogen.sh
   ./configure --enable-plugins
   make && make install
-  cat apparmor.profile.dnscrypt-proxy | grep -v block_suspend > /etc/apparmor.d/usr.local.sbin.dnscrypt-proxy
-  aa-enforce /usr/local/sbin/dnscrypt-proxy
   iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
   iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
   EOH
@@ -34,6 +32,18 @@ user node["dnscrypt-proxy"]["user"] do
   system true
   home "/home/#{node["dnscrypt-proxy"]["user"]}"
   action :create
+end
+
+template "/etc/apparmor.d/usr.local.sbin.dnscrypt-proxy" do
+  source "apparmor.erb"
+  owner "root"
+  mode "0600"
+end
+
+bash "Enforce apparmor for dnscrypt-proxy" do
+  code <<-EOH
+  aa-complain /usr/local/sbin/dnscrypt-proxy
+  EOH
 end
 
 %w(primary secondary).each do |rslv|
