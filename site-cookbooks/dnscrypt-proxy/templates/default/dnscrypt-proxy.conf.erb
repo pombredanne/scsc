@@ -7,6 +7,6 @@ stop on runlevel [016]
 respawn
 
 script
-  exec /usr/local/sbin/dnscrypt-proxy --user=<%= node["dnscrypt-proxy"]["user"] %> --local-address=<%= p["local-address"] %> --provider-key=<%= p["provider-key"] %> --provider-name=<%= p["provider-address"] %> --resolver-address=<%= p["resolver-address"] %>:<%= p["resolver-port"] %>
   <% p = node["dnscrypt-proxy"][@resolver] %>
+  exec /usr/local/sbin/dnscrypt-proxy --user=<%= node["dnscrypt-proxy"]["user"] %> --local-address=<%= p["local-address"] %> --provider-key=<%= p["provider-key"] %> --provider-name=<%= p["provider-address"] %> --resolver-address=<%= p["resolver-address"] %>:<%= p["resolver-port"] %>
 end script
