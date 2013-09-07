@@ -89,6 +89,18 @@ template "/etc/openvpn/easy-rsa/make_client_package" do
   mode 0755
 end
 
+template "/etc/apparmor.d/usr.sbin.openvpn" do
+  source "apparmor.erb"
+  owner "root"
+  mode "0600"
+end
+
+bash "Enforce apparmor for openvpn" do
+  code <<-EOH
+  aa-enforce /usr/sbin/openvpn
+  EOH
+end
+
 service "openvpn" do
   supports :restart => true
   action :start
