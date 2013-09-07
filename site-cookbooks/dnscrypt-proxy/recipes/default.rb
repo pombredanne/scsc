@@ -25,14 +25,16 @@ bash "Compile and install dnscrypt-proxy" do
 end
 
 bash "Configure iptables for dnscrypt-proxy" do
-  code <<-EOH
-  iptables -D OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
-  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
-  iptables -D OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 2053 -j ACCEPT
-  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 2053 -j ACCEPT
-  iptables -D OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
-  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
-  EOH
+  src = ""
+  uid-owner = node["dnscrypt-proxy"]["user"]
+  node["dnscrypt-proxy"]["ports"].each do |port|
+    src << "iptables -D OUTPUT -m owner --uid-owner #{uid-owner} -p udp  --dport #{port} -j ACCEPT\n"
+    src << "iptables -A OUTPUT -m owner --uid-owner #{uid-owner} -p udp  --dport #{port} -j ACCEPT\n"
+  end
+  src << "iptables -D OUTPUT -m owner --uid-owner #{uid-owner} -j DROP\n"
+  src << "iptables -A OUTPUT -m owner --uid-owner #{uid-owner} -j DROP\n"
+  src << "echo"
+  code src
 end
 
 user node["dnscrypt-proxy"]["user"] do
