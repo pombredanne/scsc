@@ -71,7 +71,6 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
         tar xvf client.tar.gz
         # The following is for Tunnelblick only:
         cp -r client client.tblk
-        rm client.tblk/client.csr
         
 3. Open `client.tblk` in Tunnelblick (just `client` is for other OpenVPN clients.)
 4. Copy all files inside `client` to your mobile devices for OpenVPN Connect (for iOS that means syncing via iTunes.)
