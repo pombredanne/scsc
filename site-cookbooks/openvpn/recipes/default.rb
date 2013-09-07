@@ -9,6 +9,7 @@
 # Distributable under the terms of the MIT license.
 
 include_recipe "hostname"
+package "apparmor-utils"
 
 package "openvpn" do
   action :install

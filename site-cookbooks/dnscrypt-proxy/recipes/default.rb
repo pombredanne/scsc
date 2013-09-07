@@ -46,7 +46,7 @@ bash "Enforce apparmor for dnscrypt-proxy" do
   EOH
 end
 
-%w(primary secondary).each do |rslv|
+%w(primary secondary opennic).each do |rslv|
   template "/etc/init/dnscrypt-proxy-#{rslv}.conf" do
     source "dnscrypt-proxy.conf.erb"
     variables(:resolver => rslv)

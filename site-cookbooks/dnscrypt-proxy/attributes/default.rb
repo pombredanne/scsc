@@ -13,3 +13,10 @@ default["dnscrypt-proxy"]["secondary"] = {
   "provider-address" => "2.dnscrypt-cert-2.cloudns.com.au",
   "resolver-address" => "113.20.8.17:443"
 }
+
+default["dnscrypt-proxy"]["opennic"] = {
+  "local-address"    => "127.0.0.1:4053",
+  "provider-key"     => "8768:C3DB:F70A:FBC6:3B64:8630:8167:2FD4:EE6F:E175:ECFD:46C9:22FC:7674:A1AC:2E2A",
+  "provider-address" => "2.dnscrypt-cert.ns2.jp.dns.opennic.glue",
+  "resolver-address" => "106.186.17.181:2053"
+}
