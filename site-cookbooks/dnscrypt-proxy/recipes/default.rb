@@ -20,10 +20,19 @@ bash "Compile and install dnscrypt-proxy" do
   ./autogen.sh
   ./configure --enable-plugins
   make && make install
-  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
-  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
   EOH
   creates "/usr/local/sbin/dnscrypt-proxy"
+end
+
+bash "Configure iptables for dnscrypt-proxy" do
+  code <<-EOH
+  iptables -D OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
+  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 443 -j ACCEPT
+  iptables -D OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 2053 -j ACCEPT
+  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -p udp  --dport 2053 -j ACCEPT
+  iptables -D OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
+  iptables -A OUTPUT -m owner --uid-owner #{node["dnscrypt-proxy"]["user"]} -j DROP
+  EOH
 end
 
 user node["dnscrypt-proxy"]["user"] do
