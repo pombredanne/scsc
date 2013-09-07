@@ -5,10 +5,10 @@ source ./vars
 ./pkitool $1
 DIR=/home/<%= @node[:user] %>/$1
 mkdir $DIR
-mv keys/client.* $DIR
+mv keys/$1.* $DIR
 cp keys/ca.crt $DIR
 cp keys/ta.key $DIR
 cp /etc/openvpn/client.conf $DIR
 cd /home/<%= @node[:user] %>
-tar --file=$1.tar.gz -czv $DIR
+tar --file=$1.tar.gz -czv $1
 rm -Rf $DIR
