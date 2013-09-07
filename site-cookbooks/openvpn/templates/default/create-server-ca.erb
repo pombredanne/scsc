@@ -10,4 +10,4 @@ source ./vars ## execute your new vars file
 ./pkitool --server server ## creates a server cert and key
 cd keys
 openvpn --genkey --secret ta.key  ## Build a TLS key
-cp server.crt server.key ca.crt dh1024.pem ta.key ../../
+cp server.crt server.key ca.crt dh<%= node["openvpn"]["key_size"] %>.pem ta.key ../../

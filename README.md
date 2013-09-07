@@ -65,7 +65,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
    Mobile: OpenVPN Connect ([iOS](https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8), [Android](https://play.google.com/store/apps/details?id=net.openvpn.openvpn))
 2. Do the following on the local machine (in the key storage directory) to get the key:
         
-        ssh scsc sudo /etc/openvpn/easy-rsa/make_client_package
+        ssh scsc sudo /etc/openvpn/easy-rsa/make_client_package client
         scp scsc:/home/ubuntu/client.tar.gz ./
         ssh scsc rm /home/ubuntu/client.tar.gz
         tar xvf client.tar.gz

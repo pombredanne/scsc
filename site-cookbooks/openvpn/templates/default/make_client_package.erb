@@ -2,11 +2,13 @@
 
 cd /etc/openvpn/easy-rsa
 source ./vars
-./pkitool client
-mkdir /home/<%= @node[:user] %>/client
-mv keys/client.* /home/<%= @node[:user] %>/client
-cp keys/ca.crt /home/<%= @node[:user] %>/client
-cp /etc/openvpn/client.conf /home/<%= @node[:user] %>/client
+./pkitool $1
+DIR=/home/<%= @node[:user] %>/$1
+mkdir $DIR
+mv keys/client.* $DIR
+cp keys/ca.crt $DIR
+cp keys/ta.key $DIR
+cp /etc/openvpn/client.conf $DIR
 cd /home/<%= @node[:user] %>
-tar --file=client.tar.gz -czv client
-rm -Rf client
+tar --file=$1.tar.gz -czv $DIR
+rm -Rf $DIR

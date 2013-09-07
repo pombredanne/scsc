@@ -8,7 +8,7 @@ export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`
 export KEY_DIR="$EASY_RSA/keys"
 
 echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR
-export KEY_SIZE=1024
+export KEY_SIZE=<%= node["openvpn"]["key_size"] %>
 export CA_EXPIRE=3650
 
 export KEY_COUNTRY="<%= @node[:ca_country] %>"
