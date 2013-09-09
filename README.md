@@ -1,15 +1,20 @@
 # scsc – Secure Cloud Script Collection
 
-This starter kit allows you to use a cloud server (VPS) for:
+SCSC is a set of Chef cookbooks that you can use to set up a personal cloud server (VPS) to provide services like file synchronization and tunnel your Internet access, powered by [OpenVPN](http://openvpn.net/index.php/open-source.html) with the most secure settings.
 
-- file storage, sync and access ([BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) + WebDAV), secure over OpenVPN
-- Firefox Sync
-- more secure Internet access (your web traffic is tunnelled through your cloud server with OpenVPN, DNS queires are resolved from [CloudNS](https://cloudns.com.au/) using [DNSCrypt](http://dnscrypt.org/), [tcpcrypt](http://tcpcrypt.org/) is used)
-- more Internet access ([OpenNIC](http://www.opennicproject.org/) and [.bit](http://dot-bit.org/Main_Page) domains, [I2P](http://www.i2p2.de/) network, [Tor](https://www.torproject.org/) hidden services)
+The services available on the server itself are:
 
-*Disclaimer*: this is designed to make you less reliant on public cloud services such as Dropbox, not to make you anonymous.
-SCSC intentionally doesn't provide a setting to use Tor for everything.
-For anonymity, use the Tor Browser Bundle (or even better, Tails) on your local machine.
+- file storage, sync and access via [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) and WebDAV
+- browser sync via [Firefox Sync Server](http://docs.services.mozilla.com/howtos/run-sync.html)
+
+The server also tunnels your Internet traffic, improving security and providing access to more networks:
+
+- as with any VPN tunnel, you're protected from your ISP (or a public Wi-Fi network you're using)
+- DNS queries are resolved from [CloudNS](https://cloudns.com.au/) (which resolves [.bit](http://dot-bit.org/Main_Page) domains, performs DNSSEC validation and doesn't do any weird things) and [OpenNIC](http://www.opennicproject.org/) using [DNSCrypt](http://dnscrypt.org/)
+- [tcpcrypt](http://tcpcrypt.org/) is used
+- the [I2P](http://www.i2p2.de/) network is available
+- [Tor](https://www.torproject.org/) hidden services are available (**if you want to use Tor for anonymity though, use it on your local machine!**)
+- [Privoxy](http://www.privoxy.org/) blocks trackers and ads
 
 ## Setup
 
@@ -21,7 +26,6 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 1. Establish a place where you can securely store cryptographic keys.  
    A [TrueCrypt](http://www.truecrypt.org)-powered [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive or SD card is strongly recommended.  
    **Warning**: Don't ever forget the passphrases to this volume! Don't lose it (and/or do back it up to a second encrypted drive.)  
-   **Note**: SSH won't use a key from the FAT file system, you have to copy it to your disk to use for installation/administration and remove the copy after use.   
    **Protip**: store a [KeePassX](https://www.keepassx.org/) database there.
 2. Sign up for a trustworthy cloud server hosting provider in a country that has a good privacy record.
    That is, [GreenQloud](http://greenqloud.com) :-)
@@ -34,19 +38,21 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
         unzip gq_credentials*
         source gq_credentials/rc
         /usr/local/bin/euca-import-keypair -f id_rsa.pub scsc
+        
+5. Copy the private key to your hard drive for now (because SSH can't use keys from the FAT file system): `cp id_rsa ~/.ssh/id_rsa_scsc`
 
 *It's also a good idea to set up full disk encryption on your devices.*
 
 ### Server setup
 
 1. Create a security group, name it `scsc`, open up SSH (tcp port 22) and OpenVPN (udp port 1194).
-2. Create an instance with Ubuntu Server 12.04 LTS, the security group `scsc` and keypair `scsc`.
+2. Create an instance with **Ubuntu Server 12.04 LTS**, the security group `scsc` and keypair `scsc`.
 3. Add the instance to your `~/.ssh/config` like this (don't forget to change the hostname):
         
         Host scsc
           Hostname i-12-34-56-78.compute.is-1.greenqloud.com
           User ubuntu
-          IdentityFile "/Volumes/USB DRIVE/id_rsa"
+          IdentityFile "~/.ssh/id_rsa_scsc"
         
 4. `ssh scsc`, check the fingerprint, say yes.
 5. Run the following commands on the server (again, don't forget to change the hostname):
@@ -54,9 +60,9 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
         echo "i-12-34-56-78.compute.is-1.greenqloud.com" > /home/ubuntu/hostname
         curl -L https://raw.github.com/myfreeweb/scsc/master/install.sh | sudo bash
    
-   That's the installation process.
-   Some things are compiled from source, so it's not lightning fast.
-   You can start installing VPN client apps while it's running.
+That's the installation process.
+Some things are compiled from source, so it's not lightning fast.
+You can start installing VPN client apps while it's running.
 
 ### VPN client setup
 
@@ -69,17 +75,22 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
         scp scsc:/home/ubuntu/client.tar.gz ./
         ssh scsc rm /home/ubuntu/client.tar.gz
         tar xvf client.tar.gz
-        # The following is for Tunnelblick only:
-        cp -r client client.tblk
         
-3. Open `client.tblk` in Tunnelblick (just `client` is for other OpenVPN clients.)
-4. Copy all files inside `client` to your mobile devices for OpenVPN Connect (for iOS that means syncing via iTunes.)
+3. You have the OpenVPN configuration files and keys in the `client` directory. Rename it to `client.tblk` for Tunnelblick.
 
 ### Browser setup
 
 1. Use `privoxy.scsc:8118` as the HTTP proxy in your browser to access .i2p and .onion sites.
    Ignore the proxy for .scsc and .dev (.scsc resolves to the VPS, .dev to localhost).
    ![Firefox proxy settings screenshot](https://files.app.net/7cgckJ3L)
+
+### Finishing
+
+When everything works, delete the copy of the SSH key from your hard drive (`rm ~/.ssh/id_rsa_scsc`) and close port 22 (SSH) on your hosting provider's firewall (security group).
+
+### Upgrading
+
+To upgrade, copy the SSH key again, reopen port 22, connect to the server via SSH and run `sudo scsc-update`.
 
 ## Usage
 
