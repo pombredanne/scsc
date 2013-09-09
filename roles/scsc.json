@@ -23,6 +23,7 @@
     "recipe[i2p]",
     "recipe[tor]",
     "recipe[privoxy]",
+    "recipe[transmission]",
     "recipe[hosts]"
   ]
 }
