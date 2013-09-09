@@ -5,6 +5,7 @@ SCSC is a set of Chef cookbooks that you can use to set up a personal cloud serv
 The services available on the server itself are:
 
 - file storage, sync and access via [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) and WebDAV
+- [Transmission](http://transmissionbt.com/) BitTorrent client
 - browser sync via [Firefox Sync Server](http://docs.services.mozilla.com/howtos/run-sync.html)
 
 The server also tunnels your Internet traffic, improving security and providing access to more networks:
@@ -107,8 +108,12 @@ Firefox Sync (Mozilla Weave) is available at weave.scsc.
 
 ### I2P
 
-The I2P router console is available on [i2p.scsc](http://i2p.scsc).  
+The I2P router console is available at [i2p.scsc](http://i2p.scsc).  
 You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor hidden services.
+
+### Transmission
+
+The Transmission web and remote interface is available at [transmission.scsc](transmission.scsc), without authentication.
 
 ## TODO
 

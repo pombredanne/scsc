@@ -23,7 +23,7 @@ template "/etc/transmission-daemon/settings.json" do
   source "settings.json.erb"
   owner "debian-transmission"
   group "debian-transmission"
-  mode "0700"
+  mode "0600"
 end
 
 service "transmission-daemon" do
