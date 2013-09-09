@@ -19,11 +19,11 @@ group "data" do
   append true
 end
 
-template "/var/lib/transmission-daemon/settings.json" do
+template "/etc/transmission-daemon/settings.json" do
   source "settings.json.erb"
   owner "debian-transmission"
   group "debian-transmission"
-  mode "0400"
+  mode "0700"
 end
 
 service "transmission-daemon" do
