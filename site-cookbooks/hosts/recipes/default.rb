@@ -35,6 +35,13 @@ web_app "btsync-proxy" do
   dest "http://localhost:8888/"
 end
 
+web_app "transmission-proxy" do
+  template "proxy.conf.erb"
+  server_name "transmission.scsc"
+  port 80
+  dest "http://localhost:9091/"
+end
+
 web_app "weave-wsgi" do
   template "wsgi.conf.erb"
   server_name "weave.scsc"

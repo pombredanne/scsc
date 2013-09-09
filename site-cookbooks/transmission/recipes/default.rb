@@ -12,3 +12,21 @@ end
 package "transmission-daemon" do
   action :upgrade
 end
+
+group "data" do
+  action :modify
+  members "debian-transmission"
+  append true
+end
+
+template "/var/lib/transmission-daemon/settings.json" do
+  source "settings.json.erb"
+  owner "debian-transmission"
+  group "debian-transmission"
+  mode "0400"
+end
+
+service "transmission-daemon" do
+  supports [:restart, :reload, :status]
+  action [:enable, :start]
+end

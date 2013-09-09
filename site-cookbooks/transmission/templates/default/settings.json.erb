@@ -1,0 +1,10 @@
+{
+    "download-dir": "/data/files",
+    "port-forwarding-enabled": false,
+    "rpc-enabled": true,
+    "rpc-port": 9091,
+    "rpc-whitelist": "127.0.0.1,10.17.0.*",
+    "peer-port" : <%= @node[:bittorrent_peer_port] %>,
+    "blocklist-enabled": true,
+    "blocklist-url": "<%= @node[:bittorrent_blocklist_url] %>"
+}
