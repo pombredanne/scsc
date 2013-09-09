@@ -20,3 +20,9 @@ service "i2p" do
   supports :restart => true
   action [:enable, :start]
 end
+
+group "data" do
+  action :modify
+  members "i2psvc"
+  append true
+end
