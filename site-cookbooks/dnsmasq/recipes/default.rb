@@ -1,4 +1,6 @@
-package "dnsmasq"
+package "dnsmasq" do
+  action :upgrade
+end
 
 service "dnsmasq" do
   supports [:restart, :reload, :status]

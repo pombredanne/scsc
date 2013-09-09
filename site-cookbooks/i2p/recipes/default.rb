@@ -13,7 +13,7 @@ execute "Preconfigure i2p" do
 end
 
 package "i2p" do
-  action :install
+  action :upgrade
 end
 
 service "i2p" do

@@ -1,4 +1,6 @@
-package "privoxy"
+package "privoxy" do
+  action :upgrade
+end
 
 service "privoxy" do
   supports [:restart, :reload, :status]

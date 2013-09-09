@@ -13,7 +13,9 @@ execute "Preconfigure btsync" do
   command "echo btsync btsync/managed-configuration boolean false | debconf-set-selections"
 end
 
-package "btsync"
+package "btsync" do
+  action :upgrade
+end
 
 group node["btsync"]["group"] do
   action :create

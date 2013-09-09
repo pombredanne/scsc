@@ -1,6 +1,6 @@
 include_recipe "build-essential"
 
-src_name = "tarsnap-autoconf-1.0.33"
+src_name = "tarsnap-autoconf-1.0.35"
 tarball_name = "#{src_name}.tgz"
 src_path = ::File.join Chef::Config[:file_cache_path], src_name
 tarball_path = ::File.join Chef::Config[:file_cache_path], tarball_name

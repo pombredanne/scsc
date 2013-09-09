@@ -1,1 +1,3 @@
-package "gnupg2"
+package "gnupg2" do
+  action :upgrade
+end
