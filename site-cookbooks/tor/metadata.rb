@@ -1,1 +1,3 @@
+depends "apt"
+
 supports "ubuntu"
