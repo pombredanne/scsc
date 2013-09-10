@@ -113,7 +113,7 @@ You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor h
 
 ### Transmission
 
-The Transmission web and remote interface is available at [transmission.scsc](transmission.scsc), without authentication.
+The Transmission web and remote interface is available at [transmission.scsc](http://transmission.scsc), without authentication.
 
 ## TODO
 
