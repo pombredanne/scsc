@@ -12,6 +12,7 @@
     "recipe[timezone]",
     "recipe[tmux]",
     "recipe[vim]",
+    "recipe[fail2ban]",
     "recipe[tcpcrypt]",
     "recipe[btsync]",
     "recipe[gnupg2]",
