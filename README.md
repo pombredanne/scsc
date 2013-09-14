@@ -31,7 +31,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 2. Sign up for a trustworthy cloud server hosting provider in a country that has a good privacy record.
    That is, [GreenQloud](http://greenqloud.com) :-)
    Or [a provider that accepts bitcoin](https://en.bitcoin.it/wiki/Virtual_private_server).
-3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa`) with a passphrase.
+3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa_scsc -b 4096`) with a passphrase.
 4. Send the public key to the hosting provider.  
    For GreenQloud: install [euca2ools](https://github.com/eucalyptus/euca2ools), sign in to my.greenqloud.com, User → API Access → Credentials → Download .zip, then something like this:
         
@@ -40,7 +40,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
         source gq_credentials/rc
         /usr/local/bin/euca-import-keypair -f id_rsa.pub scsc
         
-5. Copy the private key to your hard drive for now (because SSH can't use keys from the FAT file system): `cp id_rsa ~/.ssh/id_rsa_scsc`
+5. Copy the private key to your hard drive for now (because SSH can't use keys from the FAT file system): `cp id_rsa_scsc ~/.ssh/`
 
 *It's also a good idea to set up full disk encryption on your devices.*
 
