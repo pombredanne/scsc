@@ -2,7 +2,7 @@
 
 cd /etc/openvpn/easy-rsa
 source ./vars
-./pkitool client
+./pkitool $1
 DIR=/home/<%= @node[:user] %>/$1
 mkdir $DIR
 mv keys/$1.crt $DIR/client.crt
