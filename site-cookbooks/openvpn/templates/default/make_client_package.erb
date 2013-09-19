@@ -10,7 +10,6 @@ mv keys/client.key $DIR
 cp keys/ca.crt $DIR
 cp keys/ta.key $DIR
 cp /etc/openvpn/client.conf $DIR
-./clean-all
 cd /home/<%= @node[:user] %>
 tar --file=$1.tar.gz -czv $1
 rm -Rf $DIR
