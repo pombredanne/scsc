@@ -77,7 +77,7 @@ You can start installing VPN client apps while it's running.
         ssh scsc rm /home/ubuntu/client.tar.gz
         tar xvf client.tar.gz
         
-3. You have the OpenVPN configuration files and keys in the `client` directory. Rename it to `client.tblk` for Tunnelblick.
+3. You have the OpenVPN configuration files and keys in the `client` directory!
 
 ### Browser setup
 
