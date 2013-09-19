@@ -105,6 +105,7 @@ This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc
 
 Firefox Sync (Mozilla Weave) is available at weave.scsc.  
 [iCab Mobile](http://www.icab-mobile.de/) on iOS supports Firefox Sync.
+iCab asks for a Sync-Key - that's actually the Recovery Key.
 
 ### I2P
 
