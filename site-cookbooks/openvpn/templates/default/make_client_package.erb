@@ -5,8 +5,8 @@ source ./vars
 ./pkitool client
 DIR=/home/<%= @node[:user] %>/$1
 mkdir $DIR
-cp keys/client.crt $DIR
-mv keys/client.key $DIR
+mv keys/$1.crt $DIR/client.crt
+mv keys/$1.key $DIR/client.key
 cp keys/ca.crt $DIR
 cp keys/ta.key $DIR
 cp /etc/openvpn/client.conf $DIR/client.ovpn
