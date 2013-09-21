@@ -58,7 +58,8 @@ if cmd == "init":
     print("""(if you don't want Google's QR code generator to 
 log your secret, do not use the QR code or make it yourself)""")
     print("")
-    print("After you've added the secret to your app, make sure it works:")
+    print("After you've added the secret to your app, make sure it works.")
+    getpass.getpass("Press Enter when you're ready to enter a code:")
     if verify(secret):
         with open(file_path, "w") as f:
             f.write(secret)
