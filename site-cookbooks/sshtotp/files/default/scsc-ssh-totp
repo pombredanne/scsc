@@ -24,7 +24,7 @@ def verify_from_file():
     try:
         with open(file_path) as f:
             txt = f.read()
-            return verify(f.read())
+        return verify(txt)
     except IOError:
         print("Warning: no TOTP secret found at " + file_path)
         print("Run 'sudo %s init' to initialize two-factor authentication." % prog_name)
