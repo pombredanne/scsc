@@ -38,7 +38,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
         mv ~/Downloads/gq_credentials* .
         unzip gq_credentials*
         source gq_credentials/rc
-        /usr/local/bin/euca-import-keypair -f id_rsa.pub scsc
+        /usr/local/bin/euca-import-keypair -f id_rsa_scsc.pub scsc
         
 5. Copy the private key to your hard drive for now (because SSH can't use keys from the FAT file system): `cp id_rsa_scsc ~/.ssh/`
 
