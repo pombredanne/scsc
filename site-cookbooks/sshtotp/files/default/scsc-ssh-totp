@@ -27,7 +27,7 @@ def verify_from_file():
             return verify(f.read())
     except IOError:
         print("Warning: no TOTP secret found at " + file_path)
-        print("Run %s to initialize two-factor authentication." % prog_name)
+        print("Run 'sudo %s init' to initialize two-factor authentication." % prog_name)
         return True
 
 def die(msg):
