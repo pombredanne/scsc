@@ -8,6 +8,7 @@
     "recipe[hostname]",
     "recipe[folders]",
     "recipe[scripts]",
+    "recipe[sshtotp]",
     "recipe[ntp]",
     "recipe[timezone]",
     "recipe[tmux]",
