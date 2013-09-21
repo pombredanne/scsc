@@ -12,7 +12,7 @@ file_path = "/opt/definitely-not-a-secret"
 prog_name = sys.argv[0]
 
 def verify(secret):
-    input_code = getpass.getpass("TOTP code: ")
+    input_code = os.getenv("TOTP_CODE", getpass.getpass("TOTP code: "))
     try:
         code = int(input_code)
     except:
