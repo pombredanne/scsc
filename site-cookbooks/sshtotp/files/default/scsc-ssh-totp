@@ -11,6 +11,9 @@ import getpass
 file_path = "/opt/definitely-not-a-secret"
 prog_name = sys.argv[0]
 
+def errprint(msg):
+    sys.stderr.write(msg + "\n")
+
 def verify(secret):
     input_code = os.getenv("TOTP_CODE", getpass.getpass("TOTP code: "))
     try:
@@ -26,24 +29,24 @@ def verify_from_file():
             txt = f.read()
             return verify(f.read())
     except IOError:
-        print("Warning: no TOTP secret found at " + file_path)
-        print("Run %s to initialize two-factor authentication." % prog_name)
+        errprint("Warning: no TOTP secret found at " + file_path)
+        errprint("Run %s to initialize two-factor authentication." % prog_name)
         return True
 
 def die(msg):
     sys.stderr.write(msg)
     sys.exit(1)
 
-def print_help_and_die():
-    print("Usage: %s command args" % prog_name)
-    print("  Commands:")
-    print("    init - generate a secret, validate auth")
-    print("    verify - verify auth")
-    print("    ssh-verify - verify auth and execute the SSH command (used from SSH)")
+def errprint_help_and_die():
+    errprint("Usage: %s command args" % prog_name)
+    errprint("  Commands:")
+    errprint("    init - generate a secret, validate auth")
+    errprint("    verify - verify auth")
+    errprint("    ssh-verify - verify auth and execute the SSH command (used from SSH)")
     sys.exit()
 
 if len(sys.argv) == 1:
-    print_help_and_die()
+    errprint_help_and_die()
 
 cmd = sys.argv[1]
 
@@ -51,25 +54,25 @@ if cmd == "init":
     secret = pyotp.random_base32()
     totp = pyotp.TOTP(secret)
     uri = totp.provisioning_uri(socket.gethostname())
-    print("Your provisioning URI: " + uri)
-    print("QR code URI: " + \
+    errprint("Your provisioning URI: " + uri)
+    errprint("QR code URI: " + \
             "https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=" + \
             urllib.quote(uri))
-    print("""(if you don't want Google's QR code generator to 
+    errprint("""(if you don't want Google's QR code generator to 
 log your secret, do not use the QR code or make it yourself)""")
-    print("")
-    print("After you've added the secret to your app, make sure it works:")
+    errprint("")
+    errprint("After you've added the secret to your app, make sure it works:")
     if verify(secret):
         with open(file_path, "w") as f:
             f.write(secret)
-        print("Success!")
+        errprint("Success!")
     else:
-        print("Nope, that is not correct. Try again.")
+        errprint("Nope, that is not correct. Try again.")
 elif cmd == "verify":
     if verify_from_file():
-        print("The code is valid :-)")
+        errprint("The code is valid :-)")
     else:
-        print("The code is not valid :-(")
+        errprint("The code is not valid :-(")
 elif cmd == "ssh-verify":
     if verify_from_file():
         motd_sh_path = "/usr/bin/motd+shell"
@@ -82,4 +85,4 @@ elif cmd == "ssh-verify":
     else:
         die("Invalid TOTP code :-(")
 else:
-    print_help_and_die()
+    errprint_help_and_die()
