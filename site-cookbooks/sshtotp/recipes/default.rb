@@ -17,7 +17,7 @@ end
 ruby_block "add scsc-ssh-totp to sshd_config" do
   block do
     f = Chef::Util::FileEdit.new(sshd_conf)
-    f.search_file_replace_line /^AcceptEnv LANG LC_*$/, "AcceptEnv TOTP_CODE LANG LC_*\nForceCommand #{script} ssh-verify"
+    f.search_file_replace_line /AcceptEnv/, "AcceptEnv TOTP_CODE LANG LC_*\nForceCommand #{script} ssh-verify"
     f.write_file
   end
   not_if { ::File.read(sshd_conf).include? "ForceCommand" }
