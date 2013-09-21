@@ -79,6 +79,11 @@ You can start installing VPN client apps while it's running.
         
 3. You have the OpenVPN configuration files and keys in the `client` directory!
 
+### Two-factor SSH authentication
+
+You can set up any TOTP (Time-based One Time Password) app ([Authy](https://www.authy.com/thefuture) is great) to use with SSH.
+Run `sudo scsc-ssh-totp init` on the server and follow the instructions.
+
 ### Browser setup
 
 1. Use `privoxy.scsc:8118` as the HTTP proxy in your browser to access .i2p and .onion sites.
