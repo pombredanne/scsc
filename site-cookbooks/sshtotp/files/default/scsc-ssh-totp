@@ -7,6 +7,10 @@ import pyotp
 import urllib
 import socket
 import getpass
+import pysectools
+
+pysectools.disallow_core_dumps()
+pysectools.disallow_swap()
 
 file_path = "/opt/definitely-not-a-secret"
 prog_name = sys.argv[0]
@@ -18,13 +22,17 @@ def verify(secret):
     except:
         die("Can't parse the code.")
     totp = pyotp.TOTP(secret)
-    return totp.verify(code)
+    result = totp.verify(code)
+    pysectools.zero(code)
+    return result
 
 def verify_from_file():
     try:
         with open(file_path) as f:
-            txt = f.read()
-        return verify(txt)
+            secret = f.read()
+        result = verify(secret)
+        pysectools.zero(secret)
+        return result
     except IOError:
         print("Warning: no TOTP secret found at " + file_path)
         print("Run 'sudo %s init' to initialize two-factor authentication." % prog_name)
@@ -63,6 +71,7 @@ log your secret, do not use the QR code or make it yourself)""")
     if verify(secret):
         with open(file_path, "w") as f:
             f.write(secret)
+        pysectools.zero(secret)
         print("Success!")
     else:
         print("Nope, that is not correct. Try again.")

@@ -4,7 +4,9 @@ include_recipe "python"
   package p
 end
 
-python_pip "pyotp"
+%w(pyotp pysectools).each do |p|
+  python_pip p
+end
 
 script = "/usr/bin/scsc-ssh-totp"
 sshd_conf = "/etc/ssh/sshd_config"
