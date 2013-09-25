@@ -12,6 +12,14 @@ package "tor" do
   action :upgrade
 end
 
+template "/etc/tor/torrc" do
+  source "torrc.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+  notifies :restart, "service[tor]"
+end
+
 service "tor" do
   supports [:restart, :reload, :status]
   action [:enable, :start]
