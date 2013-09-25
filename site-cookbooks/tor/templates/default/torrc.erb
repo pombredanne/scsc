@@ -17,6 +17,9 @@ DNSPort <%= node["tor"]["dns-port"] %>
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion
 
+## Freenode address
+mapaddress 10.40.40.40 p4fsi4ockecnea7l.onion
+
 # Public services (relay)
 ## Relay -- needs to be allowed on the firewall
 ORPort <%= node["tor"]["or-port"] %>
