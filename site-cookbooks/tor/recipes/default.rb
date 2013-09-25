@@ -8,8 +8,10 @@ apt_repository "tor" do
   key "886DDD89"
 end
 
-package "tor" do
-  action :upgrade
+%w(tor tor-arm).each do |p|
+  package p do
+    action :upgrade
+  end
 end
 
 template "/etc/tor/torrc" do

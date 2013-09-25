@@ -4,7 +4,7 @@ Log notice syslog
 # Private services (client)
 ## SOCKS proxy
 SocksPort 0.0.0.0:<%= node["tor"]["socks-port"] %>
-SocksPolicy accept 192.168.0.0/16
+SocksPolicy accept 127.0.0.1
 SocksPolicy accept 10.17.0.0/16 # Allow access from VPN
 SocksPolicy reject *
 
