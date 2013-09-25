@@ -46,7 +46,7 @@ There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net
 
 ### Server setup
 
-1. Create a security group, name it `scsc`, open up SSH (tcp port 22) and OpenVPN (udp port 1194).
+1. Create a security group, name it `scsc`, open up SSH (tcp port 22) and OpenVPN (udp port 1194). Also tcp ports 9001 and 9030 if you want to help the Tor network.
 2. Create an instance with **Ubuntu Server 12.04 LTS**, the security group `scsc` and keypair `scsc`.
 3. Add the instance to your `~/.ssh/config` like this (don't forget to change the hostname):
         
@@ -84,6 +84,8 @@ You can start installing VPN client apps while it's running.
 You can set up any TOTP (Time-based One Time Password) app ([Authy](https://www.authy.com/thefuture) is great) to use with SSH.
 Run `sudo scsc-ssh-totp init` on the server and follow the instructions.
 
+If your code was rejected when logging in, try again.
+
 ### Browser setup
 
 1. Use `privoxy.scsc:8118` as the HTTP proxy in your browser to access .i2p and .onion sites.
@@ -111,6 +113,16 @@ This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc
 Firefox Sync (Mozilla Weave) is available at weave.scsc.  
 [iCab Mobile](http://www.icab-mobile.de/) on iOS supports Firefox Sync.
 iCab asks for a Sync-Key - that's actually the Recovery Key.
+
+### Tor
+
+The Tor SOCKS proxy is available at port 9050 (use any .scsc hostname, eg. tor.scsc.)
+DNS resolver at 9053, control at 9051 with password `c0ntr0l` (which doesn't really matter because only you have access to this port through OpenVPN.)  
+But **you should use Tor Browser Bundle (or better, Tails) on your own local machine
+when you want serious anonymity**.
+And [read the warnings](https://www.torproject.org/download/download-easy.html.en#warning).
+
+If you want to help the Tor network by running a relay (not an exit node! you should not run an exit node on your scsc server), open tcp ports 9001 and 9030 on the firewall (security group.) 
 
 ### I2P
 
