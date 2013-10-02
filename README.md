@@ -25,9 +25,9 @@ The server also tunnels your Internet traffic, improving security and providing 
 There's the [correcthorsebatterystaple.net](http://correcthorsebatterystaple.net/) generator, but if you don't trust computers, check out [Diceware Passphrase](http://world.std.com/~reinhold/diceware.html).*
 
 1. Establish a place where you can securely store cryptographic keys.  
-   A [TrueCrypt](http://www.truecrypt.org)-powered [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive or SD card is strongly recommended.  
-   **Warning**: Don't ever forget the passphrases to this volume! Don't lose it (and/or do back it up to a second encrypted drive.)  
-   **Protip**: store a [KeePassX](https://www.keepassx.org/) database there.
+   A [TrueCrypt](http://www.truecrypt.org)-powered [Hidden volume](http://www.truecrypt.org/hiddenvolume) on a small partition of a USB drive is a good solution.  
+   [gfk](http://gfk.eatabrick.org/) sounds interesting too.
+   **Warning**: Make sure you don't lose these keys.
 2. Sign up for a trustworthy cloud server hosting provider in a country that has a good privacy record.
    That is, [GreenQloud](http://greenqloud.com) :-)
    Or [a provider that accepts bitcoin](https://en.bitcoin.it/wiki/Virtual_private_server).
@@ -79,12 +79,14 @@ You can start installing VPN client apps while it's running.
         
 3. You have the OpenVPN configuration files and keys in the `client` directory!
 
+If you have an Android device with a hardware-backed keystore, make and import a PKCS#12 file as described in the in-app help for OpenVPN Connect.
+
 ### Two-factor SSH authentication
 
 You can set up any TOTP (Time-based One Time Password) app ([Authy](https://www.authy.com/thefuture) is great) to use with SSH.
 Run `sudo scsc-ssh-totp init` on the server and follow the instructions.
 
-If your code was rejected when logging in, try again.
+If your code was rejected when logging in, try it after it expires.
 
 ### Browser setup
 
@@ -94,7 +96,7 @@ If your code was rejected when logging in, try again.
 
 ### Finishing
 
-When everything works, delete the copy of the SSH key from your hard drive (`rm ~/.ssh/id_rsa_scsc`) and close port 22 (SSH) on your hosting provider's firewall (security group).
+When everything works, securely delete the copy of the SSH key from your hard drive (`srm ~/.ssh/id_rsa_scsc` or `rm -P ~/.ssh/id_rsa_scsc`) and close port 22 (SSH) on your hosting provider's firewall (security group).
 
 ### Upgrading
 
