@@ -10,19 +10,15 @@
 
 include_recipe "hostname"
 
-package "apparmor-utils"
-
-package "openvpn" do
-  action :upgrade
+%w(openvpn bridge-utils apparmor-utils secure-delete).each do |p|
+  package p do
+    action :upgrade
+  end
 end
 
 service "openvpn" do
   supports :restart => true
   action :enable
-end
-
-package "bridge-utils" do
-  action :install
 end
 
 execute "Add br interface" do

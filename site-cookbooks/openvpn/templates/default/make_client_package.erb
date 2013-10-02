@@ -12,4 +12,4 @@ cp keys/ta.key $DIR
 cp /etc/openvpn/client.conf $DIR/client.ovpn
 cd /home/<%= @node[:user] %>
 tar --file=$1.tar.gz -czv $1
-rm -Rf $DIR
+srm -Rf $DIR

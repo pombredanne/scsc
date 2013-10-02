@@ -74,7 +74,7 @@ You can start installing VPN client apps while it's running.
         
         ssh scsc sudo /etc/openvpn/easy-rsa/make_client_package client
         scp scsc:/home/ubuntu/client.tar.gz ./
-        ssh scsc rm /home/ubuntu/client.tar.gz
+        ssh scsc srm /home/ubuntu/client.tar.gz
         tar xvf client.tar.gz
         
 3. You have the OpenVPN configuration files and keys in the `client` directory!
