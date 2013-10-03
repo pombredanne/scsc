@@ -21,6 +21,13 @@ web_app "dav" do
   document_root "/data/files"
 end
 
+web_app "znc-proxy" do
+  template "proxy.conf.erb"
+  server_name "znc.scsc"
+  port 80
+  dest "http://localhost:6697/"
+end
+
 web_app "i2p-proxy" do
   template "proxy.conf.erb"
   server_name "i2p.scsc"

@@ -120,8 +120,7 @@ iCab asks for a Sync-Key - that's actually the Recovery Key.
 
 The Tor SOCKS proxy is available at port 9050 (use any .scsc hostname, eg. tor.scsc.)
 DNS resolver at 9053, control at 9051 with password `c0ntr0l` (which doesn't really matter because only you have access to this port through OpenVPN.)  
-But **you should use Tor Browser Bundle (or better, Tails) on your own local machine
-when you want serious anonymity**.
+But **you should use Tor Browser Bundle (or better, Tails) on your own local machine when you want serious anonymity**.
 And [read the warnings](https://www.torproject.org/download/download-easy.html.en#warning).
 
 If you want to help the Tor network by running a relay (not an exit node! you should not run an exit node on your scsc server), open tcp ports 9001 and 9030 on the firewall (security group.) 
