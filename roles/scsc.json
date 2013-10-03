@@ -26,6 +26,7 @@
     "recipe[tor]",
     "recipe[privoxy]",
     "recipe[transmission]",
+    "recipe[znc]",
     "recipe[hosts]"
   ]
 }
