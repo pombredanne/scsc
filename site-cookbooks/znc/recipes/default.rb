@@ -23,6 +23,11 @@ execute "Extract znc" do
   creates src_path
 end
 
+execute "Make znc dirs" do
+  command "mkdir -p /var/lib/znc/configs"
+  creates "/var/lib/znc/configs"
+end
+
 bash "Compile and install znc" do
   cwd src_path
   code <<-EOH
