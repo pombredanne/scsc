@@ -45,6 +45,11 @@ user node["znc"]["user"] do
   action :create
 end
 
+template "/var/lib/znc/configs/znc.conf" do
+  source "znc.conf.erb"
+  mode "0750"
+end
+
 template "/etc/init.d/znc" do
   source "init.erb"
   mode "0755"
