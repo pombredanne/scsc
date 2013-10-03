@@ -1,3 +1,3 @@
-depends "build-essential"
+depends "upgrades"
 
 supports "ubuntu"

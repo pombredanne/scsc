@@ -1,26 +1,9 @@
-include_recipe "build-essential"
+include_recipe "upgrades"
 
-%w(socat libssl-dev openssl swig automake libtool libsasl2-dev checkinstall g++ pkg-config python3-dev).each do |p|
+%w(socat znc znc-extra znc-python).each do |p|
   package p do
     action :upgrade
   end
-end
-
-src_name = "znc-1.0"
-tarball_name = "#{src_name}.tar.gz"
-src_path = ::File.join Chef::Config[:file_cache_path], src_name
-tarball_path = ::File.join Chef::Config[:file_cache_path], tarball_name
-
-remote_file tarball_path do
-  source "http://znc.in/releases/#{tarball_name}"
-  mode "0644"
-  action :create_if_missing
-end
-
-execute "Extract znc" do
-  cwd Chef::Config[:file_cache_path]
-  command "tar zxvf #{tarball_name}"
-  creates src_path
 end
 
 group node["znc"]["group"] do
