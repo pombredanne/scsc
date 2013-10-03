@@ -23,20 +23,6 @@ execute "Extract znc" do
   creates src_path
 end
 
-execute "Make znc dirs" do
-  command "mkdir -p /var/lib/znc/configs"
-  creates "/var/lib/znc/configs"
-end
-
-bash "Compile and install znc" do
-  cwd src_path
-  code <<-EOH
-  ./configure --enable-python
-  make install
-  EOH
-  creates "/usr/local/bin/znc"
-end
-
 group node["znc"]["group"] do
   action :create
 end
@@ -48,6 +34,23 @@ user node["znc"]["user"] do
   system true
   home "/var/lib/znc"
   action :create
+end
+
+directory "/var/lib/znc/configs" do
+  action :create
+  recursive true
+  group "znc"
+  owner "znc"
+end
+
+bash "Compile and install znc" do
+  cwd src_path
+  code <<-EOH
+  ./configure --enable-python
+  make install
+  chown -R znc:znc /var/lib/znc
+  EOH
+  creates "/usr/local/bin/znc"
 end
 
 template "/var/lib/znc/configs/znc.conf" do
