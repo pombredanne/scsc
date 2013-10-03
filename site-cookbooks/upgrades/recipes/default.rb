@@ -17,7 +17,7 @@ end
 ruby_block "Enable backports" do
   block do
     sources = Chef::Util::FileEdit.new "/etc/apt/sources.list"
-    sources.search_file_replace_line /# deb ([^ ]+) ([^-]+)-backports main restricted universe multiverse/,
+    sources.search_file_replace /# deb ([^ ]+) ([^-]+)-backports main restricted universe multiverse/,
       "deb \\1 \\2-backports main restricted universe multiverse"
     sources.write_file
   end
