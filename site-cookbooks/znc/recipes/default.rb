@@ -46,12 +46,12 @@ user node["znc"]["user"] do
 end
 
 template "/etc/init.d/znc" do
-  source "init"
+  source "init.erb"
   mode "0755"
 end
 
 template "/etc/init/socat-freenode.conf" do
-  source "socat-freenode.conf"
+  source "socat-freenode.conf.erb"
   mode "0755"
 end
 
