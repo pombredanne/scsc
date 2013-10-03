@@ -28,6 +28,8 @@ end
 
 template "/var/lib/znc/configs/znc.conf" do
   source "znc.conf.erb"
+  group "znc"
+  owner "znc"
   mode "0750"
 end
 
