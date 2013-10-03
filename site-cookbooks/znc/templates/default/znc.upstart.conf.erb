@@ -1,0 +1,14 @@
+#!upstart
+description "znc irc bouncer"
+
+start on startup
+stop on shutdown
+
+setuid <%= node["znc"]["user"] %>
+setgid <%= node["znc"]["group"] %>
+
+respawn
+
+script
+   exec znc --datadir=/var/lib/znc --foreground
+end script

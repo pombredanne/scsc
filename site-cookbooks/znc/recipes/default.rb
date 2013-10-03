@@ -33,8 +33,8 @@ template "/var/lib/znc/configs/znc.conf" do
   mode "0750"
 end
 
-template "/etc/init.d/znc" do
-  source "init.erb"
+template "/etc/init/znc.conf" do
+  source "znc.upstart.conf.erb"
   mode "0755"
 end
 
@@ -43,13 +43,10 @@ template "/etc/init/socat-freenode.conf" do
   mode "0755"
 end
 
-service "znc" do
-  supports [:restart, :reload, :status]
-  action [:enable, :start]
-end
-
-service "socat-freenode" do
-  provider Chef::Provider::Service::Upstart
-  supports [:restart, :reload, :status]
-  action [:enable, :start]
+%w(znc socat-freenode).each do |srv|
+  service srv do
+    provider Chef::Provider::Service::Upstart
+    supports [:restart, :reload, :status]
+    action [:enable, :start]
+  end
 end
