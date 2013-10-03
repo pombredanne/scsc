@@ -1,6 +1,6 @@
 include_recipe "build-essential"
 
-%w(socat libssl-dev openssl swig automake libtool libsasl2-dev checkinstall g++ pkg-config python3-dev libperl-dev).each do |p|
+%w(socat libssl-dev openssl swig automake libtool libsasl2-dev checkinstall g++ pkg-config python3-dev).each do |p|
   package p do
     action :upgrade
   end
@@ -26,7 +26,7 @@ end
 bash "Compile and install znc" do
   cwd src_path
   code <<-EOH
-  ./configure --enable-python --enable-perl
+  ./configure --enable-python
   make install
   EOH
   creates "/usr/local/bin/znc"
