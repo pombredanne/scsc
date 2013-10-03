@@ -11,7 +11,6 @@ ConnectDelay = 5
 LoadModule = webadmin
 LoadModule = fail2ban
 LoadModule = lastseen
-LoadModule = sasl
 MaxBufferSize = 500
 PidFile = /var/run/znc/znc.pid
 ProtectWebSessions = true
@@ -26,7 +25,6 @@ Version = 1.0
   IPv4 = true
   IPv6 = false
   Port = 6697
-  SSL = true
 </Listener>
 
 <User TODO>
@@ -60,6 +58,7 @@ Version = 1.0
     LoadModule = kickrejoin
     LoadModule = nickserv
     LoadModule = savebuff
+    LoadModule = sasl
     Server = 127.0.0.1 6696
   </Network>
 
