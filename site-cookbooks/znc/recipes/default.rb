@@ -26,16 +26,6 @@ directory "/var/lib/znc/configs" do
   owner "znc"
 end
 
-bash "Compile and install znc" do
-  cwd src_path
-  code <<-EOH
-  ./configure --enable-python
-  make install
-  chown -R znc:znc /var/lib/znc
-  EOH
-  creates "/usr/local/bin/znc"
-end
-
 template "/var/lib/znc/configs/znc.conf" do
   source "znc.conf.erb"
   mode "0750"

@@ -22,3 +22,7 @@ ruby_block "Enable backports" do
     sources.write_file
   end
 end
+
+execute "Do update" do
+  command "apt-get update"
+end
