@@ -7,6 +7,7 @@ The services available on the server itself are:
 - file storage, sync and access via [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) and WebDAV
 - [Transmission](http://transmissionbt.com/) BitTorrent client
 - browser sync via [Firefox Sync Server](http://docs.services.mozilla.com/howtos/run-sync.html)
+- [ZNC](http://wiki.znc.in/ZNC) IRC bouncer
 
 The server also tunnels your Internet traffic, improving security and providing access to more networks:
 
@@ -127,12 +128,23 @@ If you want to help the Tor network by running a relay (not an exit node! you sh
 
 ### I2P
 
-The I2P router console is available at [i2p.scsc](http://i2p.scsc).  
+The [I2P router](http://i2p2.de) console is available at [i2p.scsc](http://i2p.scsc).  
 You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor hidden services.
+
+### ZNC (the IRC bouncer)
+
+[ZNC](http://wiki.znc.in/ZNC) 1.0 is running at port 6697, webadmin at [znc.scsc](http://znc.scsc).  
+The default username and password are `admin` and `password`.
+
+There are two networks preconfigured:
+
+1. `freenode` is [freenode](http://freenode.net) over [SSL and Tor (with SASL auth)](http://freenode.net/irc_servers.shtml#tor).
+   Connect to `znc.scsc:6697` with password `admin/freenode:password`, send `/msg *sasl set freenodeUsername freenodePassword`  
+2. `irc2p` is [the I2P IRC network](http://killyourtv.i2p.us/i2p/ircservers/irc2p/).
 
 ### Transmission
 
-The Transmission web and remote interface is available at [transmission.scsc](http://transmission.scsc), without authentication.
+The [Transmission](http://transmissionbt.com) web and remote interface is available at [transmission.scsc](http://transmission.scsc), without authentication.
 
 ## TODO
 
