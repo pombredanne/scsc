@@ -6,9 +6,8 @@ import sys
 import site
 
 # Stolen from Firefox Sync :-)
-_CURDIR = os.path.dirname(os.path.abspath(__file__))
 _PY_VER = sys.version.split()[0][:3]
-_SITE_PKG = os.path.join(_CURDIR, 'lib', 'python' + _PY_VER, 'site-packages')
+_SITE_PKG = os.path.join('/opt/coldsweat/venv/lib/python' + _PY_VER, 'site-packages')
 saved = sys.path[:]
 if os.path.exists(_SITE_PKG):
     site.addsitedir(_SITE_PKG)
