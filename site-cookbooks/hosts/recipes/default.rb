@@ -69,7 +69,7 @@ web_app "coldsweat-wsgi" do
   server_name "coldsweat.scsc"
   port 80
   document_root "/opt/coldsweat/static"
-  wsgi_script "/opt/coldsweat/coldsweat.wsgi"
+  wsgi_script "../coldsweat.wsgi"
   process "coldsweat"
   process_group "coldsweat"
   process_user "coldsweat"
