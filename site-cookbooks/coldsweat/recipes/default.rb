@@ -66,6 +66,6 @@ cron "refresh_coldsweat" do
   day "*"
   month "*"
   user node["coldsweat"]["user"]
-  command "source venv/bin/activate && python sweat.py refresh"
+  command "bash -c 'source venv/bin/activate && python sweat.py refresh'"
   action :create
 end
