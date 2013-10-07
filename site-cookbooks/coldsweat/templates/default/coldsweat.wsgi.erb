@@ -10,9 +10,11 @@ _SITE_PKG = os.path.join('/opt/coldsweat/venv/lib/python' + _PY_VER, 'site-packa
 site.addsitedir(_SITE_PKG)
 sys.path.append('/opt/coldsweat')
 
+from webob.static import DirectoryApp
 from coldsweat.app import ExceptionMiddleware
 from coldsweat.fever import fever_app
 from coldsweat.frontend import frontend_app
 from coldsweat.cascade import Cascade
 
-application = ExceptionMiddleware(Cascade([fever_app, frontend_app]))
+static_app = DirectoryApp('/opt/coldsweat/static', index_page=None)
+application = ExceptionMiddleware(Cascade([static_app, fever_app, frontend_app]))

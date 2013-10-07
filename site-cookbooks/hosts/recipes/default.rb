@@ -68,8 +68,8 @@ web_app "coldsweat-wsgi" do
   template "wsgi.conf.erb"
   server_name "coldsweat.scsc"
   port 80
-  document_root "/opt/coldsweat/static"
-  wsgi_script "../coldsweat.wsgi"
+  document_root "/opt/coldsweat"
+  wsgi_script "coldsweat.wsgi"
   process "coldsweat"
   process_group "coldsweat"
   process_user "coldsweat"
