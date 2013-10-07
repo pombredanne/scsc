@@ -8,6 +8,12 @@ user node["coldsweat"]["user"] do
   action :create
 end
 
+directory "/var/log/coldsweat" do
+  owner node["coldsweat"]["user"]
+  group node["coldsweat"]["group"]
+  action :create
+end
+
 src_path = "/opt/coldsweat"
 
 git src_path do

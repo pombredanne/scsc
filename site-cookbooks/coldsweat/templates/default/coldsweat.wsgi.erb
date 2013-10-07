@@ -5,16 +5,10 @@ import os
 import sys
 import site
 
-# Stolen from Firefox Sync :-)
 _PY_VER = sys.version.split()[0][:3]
 _SITE_PKG = os.path.join('/opt/coldsweat/venv/lib/python' + _PY_VER, 'site-packages')
-saved = sys.path[:]
-if os.path.exists(_SITE_PKG):
-    site.addsitedir(_SITE_PKG)
-for path in sys.path:
-    if path not in saved:
-        saved.insert(0, path)
-sys.path[:] = saved
+site.addsitedir(_SITE_PKG)
+sys.path.append('/opt/coldsweat')
 
 from coldsweat.app import ExceptionMiddleware
 from coldsweat.fever import fever_app
