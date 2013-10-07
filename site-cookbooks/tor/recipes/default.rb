@@ -8,7 +8,7 @@ apt_repository "tor" do
   key "886DDD89"
 end
 
-%w(tor tor-arm).each do |p|
+%w(tor tor-arm ruby1.9.1).each do |p|
   package p do
     action :upgrade
   end
@@ -27,7 +27,22 @@ service "tor" do
   action [:enable, :start]
 end
 
-gem_package "proxymachine"
+# http://brandonparsons.me/2013/installing-gems-in-a-new-chef-system-ruby/
+
+ohai "reload" do
+  action :reload
+end
+
+%w(proxymachine).each do |gem_to_install|
+  ruby_block "install #{gem_to_install} in new ruby" do
+    block do
+      g = Chef::Resource::GemPackage.new(gem_to_install)
+      g.gem_binary "#{node['languages']['ruby']['bin_dir']}/gem"
+      g.run_action(:install)
+    end
+    action :create
+  end
+end
 
 template "/opt/tor-dns-proxy.rb" do
   source "proxy.rb.erb"
