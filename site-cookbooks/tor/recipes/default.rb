@@ -27,21 +27,8 @@ service "tor" do
   action [:enable, :start]
 end
 
-# http://brandonparsons.me/2013/installing-gems-in-a-new-chef-system-ruby/
-
-ohai "reload" do
-  action :reload
-end
-
-%w(proxymachine).each do |gem_to_install|
-  ruby_block "install #{gem_to_install} in new ruby" do
-    block do
-      g = Chef::Resource::GemPackage.new(gem_to_install)
-      g.gem_binary "#{node['languages']['ruby']['bin_dir']}/gem"
-      g.run_action(:install)
-    end
-    action :create
-  end
+bash "install proxymachine" do
+  code "gem install proxymachine"
 end
 
 template "/opt/tor-dns-proxy.rb" do
