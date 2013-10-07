@@ -4,10 +4,10 @@ SCSC is a set of Chef cookbooks that you can use to set up a personal cloud serv
 
 The services available on the server itself are:
 
-- file storage, sync and access via [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) and WebDAV
+- file storage, sync and access via [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) and WebDAV *instead of Dropbox*
 - [Transmission](http://transmissionbt.com/) BitTorrent client
-- browser sync via [Firefox Sync Server](http://docs.services.mozilla.com/howtos/run-sync.html)
-- [ZNC](http://wiki.znc.in/ZNC) IRC bouncer
+- browser sync via [Firefox Sync Server](http://docs.services.mozilla.com/howtos/run-sync.html) *instead of the public server*
+- [ZNC](http://wiki.znc.in/ZNC) IRC bouncer *instead of IRCCloud*
 
 The server also tunnels your Internet traffic, improving security and providing access to more networks:
 
