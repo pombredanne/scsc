@@ -53,7 +53,7 @@ bash "Install deps and create user for coldsweat" do
   code <<-EOH
   source venv/bin/activate
   pip install -r requirements.txt
-  python -c 'from coldsweat.models import *; connect(); setup(); User.create(username="reader", password="p@ssw0rd", api_key=User.make_api_key("reader", "p@ssw0rd"))'
+  sudo -u coldsweat python -c 'from coldsweat.models import *; connect(); setup(); User.create(username="reader", password="p@ssw0rd", api_key=User.make_api_key("reader", "p@ssw0rd"))'
   deactivate
   EOH
   creates "/data/coldsweat.db"
