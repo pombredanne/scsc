@@ -13,8 +13,13 @@ src_path = "/opt/coldsweat"
 git src_path do
   repository "git://github.com/passiomatic/coldsweat.git"
   reference "master"
-  user node["coldsweat"]["user"]
   action :sync
+end
+
+bash "Change owner of coldsweat repo" do
+  code <<-EOH
+  chown coldsweat:data /opt/coldsweat
+  EOH
 end
 
 python_virtualenv ::File.join(src_path, "venv") do
