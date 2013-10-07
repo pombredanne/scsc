@@ -6,6 +6,7 @@ include_recipe "apache2::mod_wsgi"
 include_recipe "i2p"
 include_recipe "btsync"
 include_recipe "firefox-sync"
+include_recipe "coldsweat"
 include_recipe "folders"
 
 group "data" do
@@ -60,5 +61,19 @@ web_app "weave-wsgi" do
   process_user "sync"
   process_user_group "data"
   processes 2
-  threads 25
+  threads 20
+end
+
+web_app "coldsweat-wsgi" do
+  template "wsgi.conf.erb"
+  server_name "coldsweat.scsc"
+  port 80
+  document_root "/opt/coldsweat"
+  wsgi_script "coldsweat.wsgi"
+  process "coldsweat"
+  process_group "coldsweat"
+  process_user "coldsweat"
+  process_user_group "data"
+  processes 2
+  threads 20
 end

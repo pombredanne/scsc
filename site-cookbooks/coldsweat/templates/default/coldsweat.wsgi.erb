@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import site
+
+# Stolen from Firefox Sync :-)
+_CURDIR = os.path.dirname(os.path.abspath(__file__))
+_PY_VER = sys.version.split()[0][:3]
+_SITE_PKG = os.path.join(_CURDIR, 'lib', 'python' + _PY_VER, 'site-packages')
+saved = sys.path[:]
+if os.path.exists(_SITE_PKG):
+    site.addsitedir(_SITE_PKG)
+for path in sys.path:
+    if path not in saved:
+        saved.insert(0, path)
+sys.path[:] = saved
+
+from coldsweat.app import ExceptionMiddleware
+from coldsweat.fever import fever_app
+from coldsweat.frontend import frontend_app
+from coldsweat.cascade import Cascade
+
+application = ExceptionMiddleware(Cascade([fever_app, frontend_app]))
