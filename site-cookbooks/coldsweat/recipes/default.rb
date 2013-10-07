@@ -13,6 +13,7 @@ src_path = "/opt/coldsweat"
 git src_path do
   repository "git://github.com/passiomatic/coldsweat.git"
   reference "master"
+  user node["coldsweat"]["user"]
   action :sync
 end
 
