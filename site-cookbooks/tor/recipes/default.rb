@@ -26,3 +26,24 @@ service "tor" do
   supports [:restart, :reload, :status]
   action [:enable, :start]
 end
+
+gem_package "proxymachine"
+
+template "/opt/tor-dns-proxy.rb" do
+  source "proxy.rb.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+  notifies :restart, "service[tor-dns-proxy]"
+end
+
+template "/etc/init/tor-dns-proxy.conf" do
+  source "tor-dns-proxy.upstart.conf.erb"
+  mode "0755"
+end
+
+service "tor-dns-proxy" do
+  provider Chef::Provider::Service::Upstart
+  supports [:restart, :reload, :status]
+  action [:enable, :start]
+end

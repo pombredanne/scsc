@@ -1,4 +1,5 @@
 default["tor"]["socks-port"] = 9050
+default["tor"]["socks-resolver-port"] = 9950
 default["tor"]["control-port"] = 9051
 default["tor"]["dns-port"] = 9053
 default["tor"]["or-port"] = 9001

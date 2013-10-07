@@ -1,0 +1,11 @@
+#!upstart
+description "proxymachine socks4a resolver for tor"
+
+start on startup
+stop on shutdown
+
+respawn
+
+script
+  exec proxymachine -p <%= node["tor"]["socks-resolver-port"] %> -c /opt/tor-dns-proxy.rb
+end script
