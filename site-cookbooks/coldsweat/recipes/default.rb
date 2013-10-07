@@ -59,10 +59,6 @@ cron "refresh_coldsweat" do
   day "*"
   month "*"
   user node["coldsweat"]["user"]
-  command <<-EOH
-  source venv/bin/activate
-  python sweat.py refresh
-  deactivate
-  EOH
+  command "source venv/bin/activate && python sweat.py refresh"
   action :create
 end
