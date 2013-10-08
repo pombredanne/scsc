@@ -8,7 +8,7 @@ apt_repository "tor" do
   key "886DDD89"
 end
 
-%w(tor tor-arm ruby1.9.1).each do |p|
+%w(tor tor-arm ruby1.9.1 ruby1.9.1-dev).each do |p|
   package p do
     action :upgrade
   end
