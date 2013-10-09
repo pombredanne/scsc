@@ -68,6 +68,14 @@ execute "setup ip_forwarding" do
   not_if  "cat /proc/sys/net/ipv4/ip_forward | grep -q 1"
 end
 
+ruby_block "permanently setup ip_forwarding" do
+  block do
+    f = Chef::Util::FileEdit.new("/etc/sysctl.conf")
+    f.search_file_replace_line /#net\.ipv4\.ip_forward=1/, "net.ipv4.ip_forward=1"
+    f.write_file
+  end
+end
+
 execute "setup iptables" do
   command "/sbin/iptables -t nat -A POSTROUTING -s 10.4.0.1/2 -o eth0 -j MASQUERADE"
 end
