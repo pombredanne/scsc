@@ -3,7 +3,6 @@ include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 include_recipe "apache2::mod_dav_fs"
 include_recipe "apache2::mod_wsgi"
-include_recipe "apache2::mod_status"
 include_recipe "monit"
 include_recipe "i2p"
 include_recipe "btsync"
@@ -15,12 +14,6 @@ group "data" do
   action :modify
   members "www-data"
   append true
-end
-
-web_app "status" do
-  template "status.conf.erb"
-  server_name "apache2status.scsc"
-  port 80
 end
 
 web_app "dav" do

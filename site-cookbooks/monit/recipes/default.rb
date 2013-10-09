@@ -26,9 +26,7 @@ stops = {
   "socat-freenode" => "/usr/sbin/service socat-freenode stop"
 }
 
-hosts = {
-  "apache2" => "apache2status.scsc"
-}
+hosts = {}
 
 ports = {
   "znc" => node["znc"]["port"],
@@ -45,7 +43,6 @@ types = {
 }
 
 protos = {
-  "apache2" => "apache-status  loglimit > 80%",
   "dnsmasq" => "dns",
   "privoxy" => "default",
   "socat-freenode" => "default",
