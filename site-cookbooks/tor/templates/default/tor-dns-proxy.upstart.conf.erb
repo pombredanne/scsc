@@ -10,5 +10,5 @@ setuid nobody
 setgid nogroup
 
 script
-  start-stop-daemon --start --make-pidfile --pidfile /var/run/tor-dns-proxy.pid --exec /usr/local/bin/proxymachine -p <%= node["tor"]["socks-resolver-port"] %> -c /opt/tor-dns-proxy.rb
+  start-stop-daemon --start --make-pidfile --pidfile /var/run/tor-dns-proxy.pid --exec /usr/local/bin/proxymachine -- -p <%= node["tor"]["socks-resolver-port"] %> -c /opt/tor-dns-proxy.rb
 end script
