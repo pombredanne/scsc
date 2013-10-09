@@ -27,6 +27,7 @@ ports = {
   "i2p" => 7657,
   "dnsmasq" => 53,
   "privoxy" => node["privoxy"]["port"],
+  "tor" => node["tor"]["socks-port"],
   "tor-dns-proxy" => node["tor"]["socks-resolver-port"]
 }
 
@@ -37,10 +38,11 @@ types = {
 protocols = {
   "dnsmasq" => "dns",
   "privoxy" => "default",
+  "tor" => "default",
   "tor-dns-proxy" => "default"
 }
 
-%w(znc i2p dnsmasq privoxy tor-dns-proxy).each do |rc|
+%w(znc i2p dnsmasq privoxy tor tor-dns-proxy).each do |rc|
   template "/etc/monit/conf.d/#{rc}" do
     source "process.erb"
     variables({
