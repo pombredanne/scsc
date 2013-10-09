@@ -45,7 +45,7 @@ types = {
 }
 
 protos = {
-  "apache2" => "apache-status",
+  "apache2" => "apache-status  loglimit > 80%",
   "dnsmasq" => "dns",
   "privoxy" => "default",
   "socat-freenode" => "default",
