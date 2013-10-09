@@ -3,6 +3,7 @@ include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
 include_recipe "apache2::mod_dav_fs"
 include_recipe "apache2::mod_wsgi"
+include_recipe "monit"
 include_recipe "i2p"
 include_recipe "btsync"
 include_recipe "firefox-sync"
@@ -20,6 +21,13 @@ web_app "dav" do
   server_name "dav.scsc"
   port 80
   document_root "/data/files"
+end
+
+web_app "monit-proxy" do
+  template "proxy.conf.erb"
+  server_name "monit.scsc"
+  port 80
+  dest "http://localhost:2812/"
 end
 
 web_app "znc-proxy" do

@@ -1,5 +1,7 @@
 depends "apache2"
 depends "i2p"
+depends "znc"
+depends "monit"
 depends "btsync"
 depends "firefox-sync"
 depends "coldsweat"

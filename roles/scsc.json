@@ -27,6 +27,7 @@
     "recipe[privoxy]",
     "recipe[transmission]",
     "recipe[znc]",
+    "recipe[monit]",
     "recipe[hosts]"
   ]
 }
