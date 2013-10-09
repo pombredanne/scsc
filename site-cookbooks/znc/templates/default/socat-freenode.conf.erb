@@ -6,6 +6,9 @@ stop on shutdown
 
 respawn
 
+setuid nobody
+setgid nogroup
+
 script
-   exec /bin/bash -c 'socat TCP4-LISTEN:6696,fork SOCKS4A:localhost:$(dig +short irc.tor.freenode.net cname | sed -E "s/([^\.]+\.[^\.]+)\./\1/"):6697,socksport=9050'
+   socat TCP4-LISTEN:6696,fork SOCKS4A:localhost:$(dig +short irc.tor.freenode.net cname | sed -E "s/([^\.]+\.[^\.]+)\./\1/"):6697,socksport=9050
 end script

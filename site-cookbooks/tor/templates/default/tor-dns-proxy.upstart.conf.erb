@@ -6,6 +6,9 @@ stop on shutdown
 
 respawn
 
+setuid nobody
+setgid nogroup
+
 script
-  exec proxymachine -p <%= node["tor"]["socks-resolver-port"] %> -c /opt/tor-dns-proxy.rb
+  proxymachine -p <%= node["tor"]["socks-resolver-port"] %> -c /opt/tor-dns-proxy.rb
 end script
