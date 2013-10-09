@@ -42,7 +42,7 @@ protocols = {
 %w(znc i2p dnsmasq privoxy tor-dns-proxy).each do |rc|
   template "/etc/monit/conf.d/#{rc}" do
     source "process.erb"
-    variables {
+    variables({
       :process  => rc,
       :pidfile  => pids[rc] || "/var/run/#{rc}/#{rc}.pid",
       :start    => starts[rc] || "/etc/init.d/#{rc} start",
@@ -50,7 +50,7 @@ protocols = {
       :port     => ports[rc],
       :type     => types[rc] || "tcp",
       :protocol => protocols[rc] || "http"
-    }
+    })
     notifies :restart, "service[monit]"
   end
 end
