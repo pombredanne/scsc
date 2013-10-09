@@ -15,7 +15,7 @@ pids = {
   "tor-dns-proxy" => "/var/run/tor-dns-proxy.pid",
   "dnscrypt-proxy-primary" => "/var/run/dnscrypt-proxy-primary.pid",
   "dnscrypt-proxy-secondary" => "/var/run/dnscrypt-proxy-secondary.pid",
-  "dnscrypt-proxy-opendns" => "/var/run/dnscrypt-proxy-opendns.pid",
+  "dnscrypt-proxy-opennic" => "/var/run/dnscrypt-proxy-opennic.pid",
   "socat-freenode" => "/var/run/socat-freenode.pid"
 }
 
@@ -27,7 +27,7 @@ ports = {
   "dnsmasq" => 53,
   "dnscrypt-proxy-primary" => 2053,
   "dnscrypt-proxy-secondary" => 3053,
-  "dnscrypt-proxy-opendns" => 4053,
+  "dnscrypt-proxy-opennic" => 4053,
   "privoxy" => node["privoxy"]["port"],
   "socat-freenode" => node["znc"]["socat-freenode-port"],
   "tor" => node["tor"]["socks-port"],
@@ -38,14 +38,14 @@ types = {
   "dnsmasq" => "udp",
   "dnscrypt-proxy-primary" => "udp",
   "dnscrypt-proxy-secondary" => "udp",
-  "dnscrypt-proxy-opendns" => "udp"
+  "dnscrypt-proxy-opennic" => "udp"
 }
 
 protos = {
   "dnsmasq" => "dns",
   "dnscrypt-proxy-primary" => "dns",
   "dnscrypt-proxy-secondary" => "dns",
-  "dnscrypt-proxy-opendns" => "dns",
+  "dnscrypt-proxy-opennic" => "dns",
   "privoxy" => "default",
   "socat-freenode" => "default",
   "tor" => "default",
@@ -53,7 +53,7 @@ protos = {
 }
 
 %w(apache2
-dnsmasq dnscrypt-proxy-primary dnscrypt-proxy-secondary dnscrypt-proxy-opendns
+dnsmasq dnscrypt-proxy-primary dnscrypt-proxy-secondary dnscrypt-proxy-opennic
 i2p tor tor-dns-proxy socat-freenode privoxy
 znc).each do |rc|
   template "/etc/monit/conf.d/#{rc}" do
