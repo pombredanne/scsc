@@ -36,6 +36,7 @@ types = {
 
 protocols = {
   "dnsmasq" => "dns",
+  "privoxy" => :noprotocol,
   "tor-dns-proxy" => :noprotocol
 }
 
