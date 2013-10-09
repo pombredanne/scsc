@@ -2,6 +2,6 @@ check process <%= @process %> with pidfile <%= @pidfile %>
   start program = "<%= @start %>"
   stop program = "<%= @stop %>"
   if failed host <%= @host %> port <%= @port %> type <%= @type %> protocol <%= @protocol %>
-  <% unless @protocol == "apache-status" %>with timeout 10 seconds<% end %>
-    then restart
+  <% unless @protocol == "apache-status" %>  with timeout 10 seconds
+<% end %>  then restart
   if 5 restarts within 5 cycles then timeout
