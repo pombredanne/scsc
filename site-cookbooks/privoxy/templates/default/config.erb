@@ -14,10 +14,10 @@ logfile logfile
 debug   4096 # Startup banner and warnings
 debug   8192 # Non-fatal errors
 
-listen-address 0.0.0.0:8118
+listen-address 0.0.0.0:<%= node["privoxy"]["port"] %>
 toggle 1
 enforce-blocks 0
 
 forward .i2p localhost:4444
-forward-socks5 .onion localhost:9050 .
-forward-socks4a .tor localhost:9950 .
+forward-socks5 .onion localhost:<%= node["tor"]["socks-port"] %> .
+forward-socks4a .tor localhost:<%= node["tor"]["socks-resolver-port"] %> .

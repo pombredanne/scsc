@@ -34,7 +34,7 @@ web_app "znc-proxy" do
   template "proxy.conf.erb"
   server_name "znc.scsc"
   port 80
-  dest "http://localhost:6697/"
+  dest "http://localhost:#{@node["znc"]["port"]}/"
 end
 
 web_app "i2p-proxy" do
@@ -48,14 +48,14 @@ web_app "btsync-proxy" do
   template "proxy.conf.erb"
   server_name "btsync.scsc"
   port 80
-  dest "http://localhost:8888/"
+  dest "http://localhost:#{@node["btsync"]["webui-port"]}/"
 end
 
 web_app "transmission-proxy" do
   template "proxy.conf.erb"
   server_name "transmission.scsc"
   port 80
-  dest "http://localhost:9091/"
+  dest "http://localhost:#{@node["transmission"]["rpc-port"]}/"
 end
 
 web_app "weave-wsgi" do

@@ -1,1 +1,3 @@
+depends "tor"
+
 supports "ubuntu"

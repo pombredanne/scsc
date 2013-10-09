@@ -1,1 +1,3 @@
+depends "znc"
+
 supports "ubuntu"

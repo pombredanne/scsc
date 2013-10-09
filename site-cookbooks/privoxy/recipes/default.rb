@@ -1,3 +1,5 @@
+include_recipe "tor"
+
 package "privoxy" do
   action :upgrade
 end
