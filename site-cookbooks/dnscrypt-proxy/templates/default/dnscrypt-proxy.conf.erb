@@ -8,5 +8,5 @@ respawn
 
 script
   <% p = node["dnscrypt-proxy"][@resolver] %>
-  exec /usr/local/sbin/dnscrypt-proxy --user=<%= node["dnscrypt-proxy"]["user"] %> --local-address=<%= p["local-address"] %> --provider-key=<%= p["provider-key"] %> --provider-name=<%= p["provider-address"] %> --resolver-address=<%= p["resolver-address"] %>:<%= p["resolver-port"] %>
+  start-stop-daemon --start --make-pidfile --pidfile /var/run/dnscrypt-proxy-<%= @resolver %>.pid --exec /usr/local/sbin/dnscrypt-proxy -- --user=<%= node["dnscrypt-proxy"]["user"] %> --local-address=<%= p["local-address"] %> --provider-key=<%= p["provider-key"] %> --provider-name=<%= p["provider-address"] %> --resolver-address=<%= p["resolver-address"] %>:<%= p["resolver-port"] %>
 end script
