@@ -11,3 +11,8 @@ end
     source "#{rc}.erb"
   end
 end
+
+service "monit" do
+  supports [:restart, :reload, :status]
+  action [:enable, :start]
+end
