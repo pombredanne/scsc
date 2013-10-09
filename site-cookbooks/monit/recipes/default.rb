@@ -11,6 +11,8 @@ end
 
 pids = {
   "apache2" => "/var/run/apache2.pid",
+  "openvpn" => "/var/run/openvpn.server.pid",
+  "ssh" => "/var/run/sshd.pid",
   "privoxy" => "/var/run/privoxy.pid",
   "tor-dns-proxy" => "/var/run/tor-dns-proxy.pid",
   "dnscrypt-proxy-primary" => "/var/run/dnscrypt-proxy-primary.pid",
@@ -52,7 +54,7 @@ protos = {
   "tor-dns-proxy" => "default"
 }
 
-%w(apache2
+%w(apache2 openvpn ssh fail2ban
 dnsmasq dnscrypt-proxy-primary dnscrypt-proxy-secondary dnscrypt-proxy-opennic
 i2p tor tor-dns-proxy socat-freenode privoxy
 znc).each do |rc|
