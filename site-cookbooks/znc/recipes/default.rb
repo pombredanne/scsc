@@ -1,4 +1,5 @@
 include_recipe "upgrades"
+include_recipe "tor"
 
 %w(socat znc znc-extra znc-python).each do |p|
   package p do

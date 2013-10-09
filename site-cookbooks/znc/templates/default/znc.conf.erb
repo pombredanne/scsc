@@ -61,7 +61,7 @@ Version = 1.0
     LoadModule = nickserv
     LoadModule = savebuff
     LoadModule = sasl
-    Server = 127.0.0.1 +6696
+    Server = 127.0.0.1 +<%= node["znc"]["socat-freenode-port"] %>
   </Network>
 
   <Network irc2p>

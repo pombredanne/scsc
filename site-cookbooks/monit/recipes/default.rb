@@ -1,5 +1,5 @@
 include_recipe "znc"
-c
+
 package "monit" do
   action :upgrade
 end
@@ -12,15 +12,18 @@ end
 pids = {
   "apache2" => "/var/run/apache2.pid",
   "privoxy" => "/var/run/privoxy.pid",
-  "tor-dns-proxy" => "/var/run/tor-dns-proxy.pid"
+  "tor-dns-proxy" => "/var/run/tor-dns-proxy.pid",
+  "socat-freenode" => "/var/run/socat-freenode.pid"
 }
 
 starts = {
-  "tor-dns-proxy" => "/usr/sbin/service tor-dns-proxy start"
+  "tor-dns-proxy"  => "/usr/sbin/service tor-dns-proxy start",
+  "socat-freenode" => "/usr/sbin/service socat-freenode start"
 }
 
 stops = {
-  "tor-dns-proxy" => "/usr/sbin/service tor-dns-proxy stop"
+  "tor-dns-proxy"  => "/usr/sbin/service tor-dns-proxy stop",
+  "socat-freenode" => "/usr/sbin/service socat-freenode stop"
 }
 
 hosts = {
@@ -32,6 +35,7 @@ ports = {
   "i2p" => 7657,
   "dnsmasq" => 53,
   "privoxy" => node["privoxy"]["port"],
+  "socat-freenode" => node["znc"]["socat-freenode-port"],
   "tor" => node["tor"]["socks-port"],
   "tor-dns-proxy" => node["tor"]["socks-resolver-port"]
 }
@@ -44,11 +48,12 @@ protos = {
   "apache2" => "apache-status",
   "dnsmasq" => "dns",
   "privoxy" => "default",
+  "socat-freenode" => "default",
   "tor" => "default",
   "tor-dns-proxy" => "default"
 }
 
-%w(apache2 znc i2p dnsmasq privoxy tor tor-dns-proxy).each do |rc|
+%w(apache2 znc i2p dnsmasq privoxy tor tor-dns-proxy socat-freenode).each do |rc|
   template "/etc/monit/conf.d/#{rc}" do
     source "process.erb"
     variables({
