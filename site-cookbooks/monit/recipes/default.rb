@@ -12,6 +12,7 @@ end
 pids = {
   "apache2" => "/var/run/apache2.pid",
   "openvpn" => "/var/run/openvpn.server.pid",
+  "btsync" => "/var/run/btsync.config.pid",
   "ssh" => "/var/run/sshd.pid",
   "privoxy" => "/var/run/privoxy.pid",
   "tor-dns-proxy" => "/var/run/tor-dns-proxy.pid",
@@ -24,8 +25,10 @@ pids = {
 hosts = {}
 
 ports = {
+  "ssh" => 22,
   "znc" => node["znc"]["port"],
   "i2p" => 7657,
+  "btsync" => node["btsync"]["webui-port"],
   "dnsmasq" => 53,
   "dnscrypt-proxy-primary" => 2053,
   "dnscrypt-proxy-secondary" => 3053,
@@ -44,6 +47,7 @@ types = {
 }
 
 protos = {
+  "ssh" => "ssh",
   "dnsmasq" => "dns",
   "dnscrypt-proxy-primary" => "dns",
   "dnscrypt-proxy-secondary" => "dns",
@@ -54,7 +58,7 @@ protos = {
   "tor-dns-proxy" => "default"
 }
 
-%w(apache2 openvpn ssh fail2ban
+%w(apache2 openvpn ssh btsync
 dnsmasq dnscrypt-proxy-primary dnscrypt-proxy-secondary dnscrypt-proxy-opennic
 i2p tor tor-dns-proxy socat-freenode privoxy
 znc).each do |rc|
