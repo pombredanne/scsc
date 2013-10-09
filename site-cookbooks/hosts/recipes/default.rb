@@ -27,7 +27,7 @@ web_app "monit-proxy" do
   template "proxy.conf.erb"
   server_name "monit.scsc"
   port 80
-  dest "http://localhost:2812/"
+  dest "http://localhost:#{@node["monit"]["httpd-port"]}/"
 end
 
 web_app "znc-proxy" do
