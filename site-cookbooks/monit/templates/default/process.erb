@@ -1,7 +1,7 @@
 check process <%= @process %> with pidfile <%= @pidfile %>
   start program = "<%= @start %>"
   stop program = "<%= @stop %>"
-  if failed host localhost port <%= @port %> type <%= @type %> <% if @protocol != :noprotocol %>protocol <%= @protocol %><% end %>
+  if failed host localhost port <%= @port %> type <%= @type %> protocol <%= @protocol %>
     with timeout 10 seconds
     then restart
   if 5 restarts within 5 cycles then timeout

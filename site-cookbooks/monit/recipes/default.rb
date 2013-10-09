@@ -36,8 +36,8 @@ types = {
 
 protocols = {
   "dnsmasq" => "dns",
-  "privoxy" => :noprotocol,
-  "tor-dns-proxy" => :noprotocol
+  "privoxy" => "default",
+  "tor-dns-proxy" => "default"
 }
 
 %w(znc i2p dnsmasq privoxy tor-dns-proxy).each do |rc|
