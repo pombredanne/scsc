@@ -1,5 +1,9 @@
-<VirtualHost *:<%= @params[:port] %>>
+<VirtualHost *:443>
   ServerName <%= @params[:server_name] %>
+
+  SSLEngine On
+  SSLCertificateFile /etc/openvpn/server.crt
+  SSLCertificateKeyFile /etc/openvpn/server.key
 
   ProxyPreserveHost On
   ProxyPass / <%= @params[:dest] %>
