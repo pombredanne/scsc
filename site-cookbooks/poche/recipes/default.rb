@@ -10,10 +10,11 @@ end
 bash "install poche" do
   cwd node["poche"]["root"]
   code <<-EOH
-  chown www-data .
+  chown www-data:data assets
+  chown www-data:data cache
   composer install
-  cp install/poche.sqlite db/poche.sqlite
-  cp inc/poche/config.inc.php.new inc/poche/config.inc.php
+  cp install/poche.sqlite /data/poche.sqlite
+  cat inc/poche/config.inc.php.new | sed -e "s/'STORAGE_SQLITE', ROOT . '\/db\/poche.sqlite'/'STORAGE_SQLITE', '\/data\/poche.sqlite'/" > inc/poche/config.inc.php
   EOH
-  creates ::File.join node["poche"]["root"], "db/poche.sqlite"
+  creates "/data/poche.sqlite"
 end
