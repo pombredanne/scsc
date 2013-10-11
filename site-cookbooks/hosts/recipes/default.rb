@@ -1,28 +1,3 @@
-include_recipe "apt"
-
-apt_repository "php5" do
-  uri "http://ppa.launchpad.net/ondrej/php5/ubuntu"
-  distribution node["lsb"]["codename"]
-  components ["main"]
-  keyserver "keyserver.ubuntu.com"
-  key "E5267A6C"
-end
-
-%w(apache2 php5).each do |p|
-  package p do
-    action :upgrade
-  end
-end
-
-bash "install composer" do
-  cwd Chef::Config[:file_cache_path]
-  code <<-EOH
-  curl -sS https://getcomposer.org/installer | php
-  mv composer.phar /usr/local/bin/composer
-  EOH
-  creates "/usr/local/bin/composer"
-end
-
 include_recipe "apache2"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
@@ -35,6 +10,15 @@ include_recipe "btsync"
 include_recipe "firefox-sync"
 include_recipe "coldsweat"
 include_recipe "folders"
+
+bash "install composer" do
+  cwd Chef::Config[:file_cache_path]
+  code <<-EOH
+  curl -sS https://getcomposer.org/installer | php
+  mv composer.phar /usr/local/bin/composer
+  EOH
+  creates "/usr/local/bin/composer"
+end
 
 group "data" do
   action :modify
