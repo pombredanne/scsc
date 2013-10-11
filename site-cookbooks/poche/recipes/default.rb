@@ -13,6 +13,7 @@ bash "install poche" do
   chown www-data .
   composer install
   cp install/poche.sqlite db/poche.sqlite
+  cp inc/poche/config.inc.php.new inc/poche/config.inc.php
   EOH
   creates ::File.join node["poche"]["root"], "db/poche.sqlite"
 end
