@@ -15,6 +15,7 @@ bash "install poche" do
   composer install
   cp install/poche.sqlite /data/poche.sqlite
   cp inc/poche/config.inc.php.new inc/poche/config.inc.php
+  rm -r install
   EOH
   creates "/data/poche.sqlite"
 end
