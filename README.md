@@ -9,6 +9,7 @@ The services available on the server itself are:
 - browser sync via [Firefox Sync Server][weave] *instead of the public server*
 - [ZNC][znc] IRC bouncer *instead of IRCCloud*
 - [Coldsweat][coldsweat] Fever API-compatible RSS/Atom feed reader *instead of Feedly*
+- [Poche][poche] read it later app *instead of Instapaper*
 
 The server also tunnels your Internet traffic, improving security and providing access to more networks:
 
@@ -148,6 +149,10 @@ There are two networks preconfigured:
 [Coldsweat][coldsweat] is running at [coldsweat.scsc](http://coldsweat.scsc).  
 Default username and password are both `coldsweat`.
 
+### Poche (read it later)
+
+[Poche][poche] is running at [poche.scsc](http://poche.scsc).
+
 ### Transmission
 
 The [Transmission][transmission] web and remote interface is available at [transmission.scsc](http://transmission.scsc), without authentication.
@@ -168,6 +173,7 @@ The [Transmission][transmission] web and remote interface is available at [trans
 [weave]: http://docs.services.mozilla.com/howtos/run-sync.html
 [znc]: http://wiki.znc.in/ZNC
 [coldsweat]: https://github.com/passiomatic/coldsweat
+[poche]: http://www.inthepoche.com/
 [cloudns]: https://cloudns.com.au/
 [dotbit]: http://dot-bit.org/Main_Page
 [opennic]: http://www.opennicproject.org/
