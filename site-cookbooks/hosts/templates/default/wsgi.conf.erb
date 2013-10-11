@@ -9,7 +9,6 @@
   SSLEngine On
   SSLCertificateFile <%= node["hosts"]["ssl-cert"] %>
   SSLCertificateKeyFile <%= node["hosts"]["ssl-key"] %>
-  SSLProtocol <%= node["hosts"]["ssl-protocol"] %>
   SSLCipherSuite <%= node["hosts"]["ssl-ciphers"] %>
   SSLHonorCipherOrder on
 
