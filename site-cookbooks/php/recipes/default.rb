@@ -1,4 +1,4 @@
-%w(php5 php5-curl php5-tidy).each do |p|
+%w(php5 php5-curl php5-tidy php5-sqlite).each do |p|
   package p do
     action :upgrade
   end
