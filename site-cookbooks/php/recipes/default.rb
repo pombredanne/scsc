@@ -1,5 +1,7 @@
-package "php5" do
-  action :upgrade
+%w(php5 php5-curl php5-tidy).each do |p|
+  package p do
+    action :upgrade
+  end
 end
 
 bash "install composer" do
