@@ -6,6 +6,7 @@ depends "monit"
 depends "btsync"
 depends "firefox-sync"
 depends "coldsweat"
+depends "poche"
 depends "folders"
 
 supports "ubuntu"

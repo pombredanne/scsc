@@ -9,16 +9,8 @@ include_recipe "i2p"
 include_recipe "btsync"
 include_recipe "firefox-sync"
 include_recipe "coldsweat"
+include_recipe "poche"
 include_recipe "folders"
-
-bash "install composer" do
-  cwd Chef::Config[:file_cache_path]
-  code <<-EOH
-  curl -sS https://getcomposer.org/installer | php
-  mv composer.phar /usr/local/bin/composer
-  EOH
-  creates "/usr/local/bin/composer"
-end
 
 group "data" do
   action :modify
@@ -37,14 +29,14 @@ web_app "monit-proxy" do
   template "proxy.conf.erb"
   server_name "monit.scsc"
   port 80
-  dest "http://localhost:#{@node["monit"]["httpd-port"]}/"
+  dest "http://localhost:#{node["monit"]["httpd-port"]}/"
 end
 
 web_app "znc-proxy" do
   template "proxy.conf.erb"
   server_name "znc.scsc"
   port 80
-  dest "http://localhost:#{@node["znc"]["port"]}/"
+  dest "http://localhost:#{node["znc"]["port"]}/"
 end
 
 web_app "i2p-proxy" do
@@ -58,14 +50,21 @@ web_app "btsync-proxy" do
   template "proxy.conf.erb"
   server_name "btsync.scsc"
   port 80
-  dest "http://localhost:#{@node["btsync"]["webui-port"]}/"
+  dest "http://localhost:#{node["btsync"]["webui-port"]}/"
 end
 
 web_app "transmission-proxy" do
   template "proxy.conf.erb"
   server_name "transmission.scsc"
   port 80
-  dest "http://localhost:#{@node["transmission"]["rpc-port"]}/"
+  dest "http://localhost:#{node["transmission"]["rpc-port"]}/"
+end
+
+web_app "poche-php" do
+  template "php.conf.erb"
+  server_name "poche.scsc"
+  port 80
+  document_root node["poche"]["root"]
 end
 
 web_app "weave-wsgi" do
