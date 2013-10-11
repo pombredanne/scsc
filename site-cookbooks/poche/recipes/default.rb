@@ -20,10 +20,19 @@ bash "install poche" do
 end
 
 poche_conf = ::File.join(node["poche"]["root"], "inc/poche/config.inc.php")
+poche_salt = "/data/poche.salt"
 
-ruby_block "change poche db path" do
+ruby_block "change poche db path and salt" do
   block do
+    if ::File.exists?(poche_salt)
+      salt = ::File.read(poche_salt)
+    else
+      require 'securerandom'
+      salt = SecureRandom.hex
+      ::File.write(poche_salt, salt)
+    end
     f = Chef::Util::FileEdit.new(poche_conf)
+    f.search_file_replace_line /define \('SALT.*/, "define ('SALT', '#{salt}');"
     f.search_file_replace_line /define \('STORAGE_SQLITE.*/, "define ('STORAGE_SQLITE', '/data/poche.sqlite');"
     f.write_file
   end
