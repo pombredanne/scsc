@@ -1,3 +1,4 @@
+depends "apt"
 depends "apache2"
 depends "i2p"
 depends "znc"
