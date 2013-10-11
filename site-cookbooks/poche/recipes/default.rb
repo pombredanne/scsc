@@ -14,6 +14,7 @@ bash "install poche" do
   chown www-data:data cache
   composer install
   cp install/poche.sqlite /data/poche.sqlite
+  chown www-data:data /data/poche.sqlite
   cp inc/poche/config.inc.php.new inc/poche/config.inc.php
   rm -r install
   EOH
