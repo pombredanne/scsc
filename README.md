@@ -107,11 +107,14 @@ To upgrade, copy the SSH key again, reopen port 22, connect to the server via SS
 
 ## Usage
 
+All web services are using a self-signed SSL certificate.  
+You have to confirm the security exception in your browser.
+
 ### BitTorrent Sync and WebDAV
 
-BitTorrent Sync is available at [btsync.scsc](http://btsync.scsc).
+BitTorrent Sync is available at [btsync.scsc](https://btsync.scsc).
 Use the folder /data/files for syncing.
-This is the folder that's available through WebDAV at [dav.scsc](http://dav.scsc).
+This is the folder that's available through WebDAV at [dav.scsc](https://dav.scsc).
 
 ### Firefox Sync
 
@@ -130,12 +133,12 @@ If you want to help the Tor network by running a relay (not an exit node! you sh
 
 ### I2P
 
-The [I2P router][i2p] console is available at [i2p.scsc](http://i2p.scsc).  
+The [I2P router][i2p] console is available at [i2p.scsc](https://i2p.scsc).  
 You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor hidden services.
 
 ### ZNC (the IRC bouncer)
 
-[ZNC][znc] 1.0 is running at port 6697, webadmin at [znc.scsc](http://znc.scsc).  
+[ZNC][znc] 1.0 is running at port 6697, webadmin at [znc.scsc](https://znc.scsc).  
 The default username and password are `admin` and `password`.
 
 There are two networks preconfigured:
@@ -146,16 +149,16 @@ There are two networks preconfigured:
 
 ### Coldsweat (RSS/Atom feed reader)
 
-[Coldsweat][coldsweat] is running at [coldsweat.scsc](http://coldsweat.scsc).  
+[Coldsweat][coldsweat] is running at [coldsweat.scsc](https://coldsweat.scsc).  
 Default username and password are both `coldsweat`.
 
 ### Poche (read it later)
 
-[Poche][poche] is running at [poche.scsc](http://poche.scsc).
+[Poche][poche] is running at [poche.scsc](https://poche.scsc).
 
 ### Transmission
 
-The [Transmission][transmission] web and remote interface is available at [transmission.scsc](http://transmission.scsc), without authentication.
+The [Transmission][transmission] web and remote interface is available at [transmission.scsc](https://transmission.scsc), without authentication.
 
 ## TODO
 
