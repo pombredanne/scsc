@@ -1,5 +1,17 @@
-<VirtualHost *:<%= @params[:port] %>>
+<VirtualHost *:80>
   ServerName <%= @params[:server_name] %>
+  RedirectMatch (.*) https://<%= @params[:server_name] %>$1
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName <%= @params[:server_name] %>
+
+  SSLEngine On
+  SSLCertificateFile <%= node["hosts"]["ssl-cert"] %>
+  SSLCertificateKeyFile <%= node["hosts"]["ssl-key"] %>
+  SSLProtocol <%= node["hosts"]["ssl-protocol"] %>
+  SSLCipherSuite <%= node["hosts"]["ssl-ciphers"] %>
+  SSLHonorCipherOrder on
 
   DocumentRoot <%= @params[:document_root] %>
   <Directory <%= @params[:document_root] %>>
