@@ -1,4 +1,6 @@
 include_recipe "build-essential"
+include_recipe "python"
+include_recipe "folders"
 
 src_name = "tarsnap-autoconf-1.0.35"
 tarball_name = "#{src_name}.tgz"
@@ -28,4 +30,28 @@ bash "Compile and install tarsnap" do
   make all install clean
   EOH
   creates "/usr/local/bin/tarsnap"
+end
+
+directory node["tarsnap"]["cachedir"] do
+  action :create
+end
+
+template node["tarsnap"]["tarsnap-config"] do
+  source "tarsnap.conf.erb"
+end
+
+python_pip "tarsnapper"
+
+template node["tarsnap"]["tarsnapper-config"] do
+  source "tarsnapper.yml.erb"
+end
+
+cron "tarsnapper" do
+  minute "0"
+  hour "*/6"
+  day "*"
+  month "*"
+  user "root"
+  command "/usr/local/bin/tarsnapper -c #{node["tarsnap"]["tarsnapper-config"]} make"
+  action :create
 end
