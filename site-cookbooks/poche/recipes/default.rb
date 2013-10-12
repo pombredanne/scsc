@@ -13,16 +13,16 @@ bash "install poche" do
   chown www-data:data assets
   chown www-data:data cache
   composer install
-  cp install/poche.sqlite /data/poche.sqlite
-  chown www-data:data /data/poche.sqlite
+  cp install/poche.sqlite #{node["poche"]["db"]}
+  chown www-data:data #{node["poche"]["db"]}
   cp inc/poche/config.inc.php.new inc/poche/config.inc.php
   rm -r install
   EOH
-  creates "/data/poche.sqlite"
+  creates node["poche"]["db"]
 end
 
 poche_conf = ::File.join(node["poche"]["root"], "inc/poche/config.inc.php")
-poche_salt = "/data/poche.salt"
+poche_salt = node["poche"]["salt"]
 
 ruby_block "change poche db path and salt" do
   block do
@@ -35,8 +35,8 @@ ruby_block "change poche db path and salt" do
     end
     f = Chef::Util::FileEdit.new(poche_conf)
     f.search_file_replace_line /define \('SALT.*/, "define ('SALT', '#{salt}');"
-    f.search_file_replace_line /define \('STORAGE_SQLITE.*/, "define ('STORAGE_SQLITE', '/data/poche.sqlite');"
+    f.search_file_replace_line /define \('STORAGE_SQLITE.*/, "define ('STORAGE_SQLITE', '#{node["poche"]["db"]}');"
     f.write_file
   end
-  not_if { ::File.read(poche_conf).include? "/data/poche.sqlite" }
+  not_if { ::File.read(poche_conf).include? node["poche"]["db"] }
 end
