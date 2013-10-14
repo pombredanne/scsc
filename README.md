@@ -146,6 +146,7 @@ There are two networks preconfigured:
 1. `freenode` is [freenode][freenode] over [SSL and Tor (with SASL auth)][freenode-tor].
    Connect to `znc.scsc:6667` with password `admin/freenode:password`, send `/msg *sasl set freenodeUsername freenodePassword`  
 2. `irc2p` is [the I2P IRC network][irc2p].
+3. `onionnet` is [the Tor-powered OnionNet][onionnet]
 
 ### Coldsweat (RSS/Atom feed reader)
 
@@ -203,3 +204,4 @@ The [Transmission][transmission] web and remote interface is available at [trans
 [freenode]: http://freenode.net
 [freenode-tor]: http://freenode.net/irc_servers.shtml#tor
 [irc2p]: http://killyourtv.i2p.us/i2p/ircservers/irc2p/
+[onionnet]: http://pastebin.com/9aTv2thj
