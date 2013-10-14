@@ -19,7 +19,7 @@ pids = {
   "dnscrypt-proxy-primary" => "/var/run/dnscrypt-proxy-primary.pid",
   "dnscrypt-proxy-secondary" => "/var/run/dnscrypt-proxy-secondary.pid",
   "dnscrypt-proxy-opennic" => "/var/run/dnscrypt-proxy-opennic.pid",
-  "socat-freenode" => "/var/run/socat-freenode.pid"
+  "socat-freenode" => "/var/run/socat-freenode.pid",
   "socat-onionnet" => "/var/run/socat-onionnet.pid"
 }
 
