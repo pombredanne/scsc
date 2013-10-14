@@ -138,13 +138,13 @@ You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor h
 
 ### ZNC (the IRC bouncer)
 
-[ZNC][znc] 1.0 is running at port 6697, webadmin at [znc.scsc](https://znc.scsc).  
+[ZNC][znc] 1.0 is running at port 6667, webadmin at [znc.scsc](https://znc.scsc).  
 The default username and password are `admin` and `password`.
 
 There are two networks preconfigured:
 
 1. `freenode` is [freenode][freenode] over [SSL and Tor (with SASL auth)][freenode-tor].
-   Connect to `znc.scsc:6697` with password `admin/freenode:password`, send `/msg *sasl set freenodeUsername freenodePassword`  
+   Connect to `znc.scsc:6667` with password `admin/freenode:password`, send `/msg *sasl set freenodeUsername freenodePassword`  
 2. `irc2p` is [the I2P IRC network][irc2p].
 
 ### Coldsweat (RSS/Atom feed reader)
