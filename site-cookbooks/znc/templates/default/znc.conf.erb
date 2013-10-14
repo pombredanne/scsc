@@ -64,10 +64,19 @@ Version = 1.0
     Server = 127.0.0.1 +<%= node["znc"]["socat-freenode-port"] %>
   </Network>
 
+  <Network onionnet>
+    IRCConnectEnabled = true
+    LoadModule = kickrejoin
+    LoadModule = nickserv
+    LoadModule = savebuff
+    Server = 127.0.0.1 <%= node["znc"]["socat-onionnet-port"] %>
+  </Network>
+
   <Network irc2p>
     IRCConnectEnabled = true
     LoadModule = kickrejoin
+    LoadModule = nickserv
     LoadModule = savebuff
-    Server = 127.0.0.1 6668
+    Server = 127.0.0.1 <%= node["znc"]["irc2p-port"] %>
   </Network>
 </User>

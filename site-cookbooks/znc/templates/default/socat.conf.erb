@@ -1,0 +1,11 @@
+#!upstart
+description "socat for <%= @network %> irc network over tor"
+
+start on startup
+stop on shutdown
+
+respawn
+
+script
+  start-stop-daemon --start --make-pidfile --pidfile /var/run/socat-<%= @network %>.pid --chuid nobody:nogroup --exec /usr/bin/socat -- TCP4-LISTEN:<%= @listen_port %>,fork SOCKS4A:localhost:<%= @network_address %>:6697,socksport=<%= node["tor"]["socks-port"] %> > /var/log/socat-<%= @network %>.log
+end script
