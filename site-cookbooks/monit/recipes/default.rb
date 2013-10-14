@@ -20,6 +20,7 @@ pids = {
   "dnscrypt-proxy-secondary" => "/var/run/dnscrypt-proxy-secondary.pid",
   "dnscrypt-proxy-opennic" => "/var/run/dnscrypt-proxy-opennic.pid",
   "socat-freenode" => "/var/run/socat-freenode.pid"
+  "socat-onionnet" => "/var/run/socat-onionnet.pid"
 }
 
 hosts = {}
@@ -35,6 +36,7 @@ ports = {
   "dnscrypt-proxy-opennic" => 4053,
   "privoxy" => node["privoxy"]["port"],
   "socat-freenode" => node["znc"]["socat-freenode-port"],
+  "socat-onionnet" => node["znc"]["socat-onionnet-port"],
   "tor" => node["tor"]["socks-port"],
   "tor-dns-proxy" => node["tor"]["socks-resolver-port"]
 }
@@ -54,13 +56,14 @@ protos = {
   "dnscrypt-proxy-opennic" => "dns",
   "privoxy" => "default",
   "socat-freenode" => "default",
+  "socat-onionnet" => "default",
   "tor" => "default",
   "tor-dns-proxy" => "default"
 }
 
 %w(apache2 openvpn ssh btsync
 dnsmasq dnscrypt-proxy-primary dnscrypt-proxy-secondary dnscrypt-proxy-opennic
-i2p tor tor-dns-proxy socat-freenode privoxy
+i2p tor tor-dns-proxy socat-freenode socat-onionnet privoxy
 znc).each do |rc|
   template "/etc/monit/conf.d/#{rc}" do
     source "process.erb"
