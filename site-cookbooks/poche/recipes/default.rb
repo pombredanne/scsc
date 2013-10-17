@@ -16,9 +16,15 @@ bash "install poche" do
   cp install/poche.sqlite #{node["poche"]["db"]}
   chown www-data:data #{node["poche"]["db"]}
   cp inc/poche/config.inc.php.new inc/poche/config.inc.php
-  rm -r install
   EOH
   creates node["poche"]["db"]
+end
+
+bash "make sure install dir is removed" do
+  cwd node["poche"]["root"]
+  code <<-EOH
+  rm -r install
+  EOH
 end
 
 poche_conf = ::File.join(node["poche"]["root"], "inc/poche/config.inc.php")
