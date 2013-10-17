@@ -16,13 +16,20 @@ package "i2p" do
   action :upgrade
 end
 
-service "i2p" do
-  supports :restart => true
-  action [:enable, :start]
-end
-
 group "data" do
   action :modify
   members "i2psvc"
   append true
+end
+
+template "/var/lib/i2p/i2p-config/addressbook/subscriptions.txt" do
+  source "subscriptions.txt.erb"
+  owner "i2psvc"
+  group "i2psvc"
+  mode "0600"
+end
+
+service "i2p" do
+  supports :restart => true
+  action [:enable, :start]
 end
