@@ -22,9 +22,7 @@ end
 
 bash "make sure install dir is removed" do
   cwd node["poche"]["root"]
-  code <<-EOH
-  rm -r install
-  EOH
+  code "rm -rf install"
 end
 
 poche_conf = ::File.join(node["poche"]["root"], "inc/poche/config.inc.php")
