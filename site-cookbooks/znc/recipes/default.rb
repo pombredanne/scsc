@@ -1,7 +1,8 @@
 include_recipe "upgrades"
 include_recipe "tor"
+include_recipe "git"
 
-%w(socat znc znc-extra znc-python).each do |p|
+%w(socat znc znc-dev znc-extra znc-python).each do |p|
   package p do
     action :upgrade
   end
@@ -18,6 +19,24 @@ user node["znc"]["user"] do
   system true
   home "/var/lib/znc"
   action :create
+end
+
+push_src_path = ::File.join Chef::Config[:file_cache_path], "znc-push"
+
+git push_src_path do
+  repository "git://github.com/jreese/znc-push.git"
+  reference "master"
+  action :sync
+end
+
+bash "compile and install znc-push" do
+  cwd push_src_path
+  code <<-EOH
+  make
+  mv push.so /var/lib/znc/modules/push.so
+  chown znc:znc /var/lib/znc/modules/push.so
+  EOH
+  creates "/var/lib/znc/modules/push.so"
 end
 
 directory "/var/lib/znc/configs" do
