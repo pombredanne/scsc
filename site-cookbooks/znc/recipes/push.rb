@@ -11,6 +11,7 @@ end
 
 bash "compile and install znc-push" do
   cwd src_path
+  retries 1
   code <<-EOH
   make
   mv push.so /var/lib/znc/modules/push.so

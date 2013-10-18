@@ -11,6 +11,7 @@ end
 
 bash "compile and install znc-palaver" do
   cwd src_path
+  retries 1
   code <<-EOH
   make
   mv palaver.so /var/lib/znc/modules/palaver.so
