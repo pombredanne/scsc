@@ -26,6 +26,13 @@ bash "unzip subsonic" do
   creates subsonic_path
 end
 
+user node["subsonic"]["user"] do
+  shell "/bin/false"
+  gid node["subsonic"]["group"]
+  system true
+  action :create
+end
+
 template "/etc/init/subsonic.conf" do
   source "subsonic.upstart.conf.erb"
   variables(:jetty_path => jetty_path, :subsonic_path => subsonic_path)

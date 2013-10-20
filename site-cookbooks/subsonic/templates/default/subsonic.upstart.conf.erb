@@ -7,5 +7,5 @@ stop on shutdown
 respawn
 
 script
-  start-stop-daemon --start --make-pidfile --pidfile /var/run/subsonic.pid --chuid nobody:nogroup --exec /usr/bin/java -- -jar <%= @jetty_path %> --port <%= node["subsonic"]["port"] %> <%= @subsonic_path %>
+  start-stop-daemon --start --make-pidfile --pidfile /var/run/subsonic.pid --chuid <%= node["subsonic"]["user"] %>:<%= node["subsonic"]["group"] %> --exec /usr/bin/java -- -jar <%= @jetty_path %> --port <%= node["subsonic"]["port"] %> <%= @subsonic_path %>
 end script
