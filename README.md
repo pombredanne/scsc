@@ -34,7 +34,16 @@ There's the [correcthorsebatterystaple.net][chbs] generator, but if you don't tr
 2. Sign up for a trustworthy cloud server hosting provider in a country that has a good privacy record.
    That is, [GreenQloud][greenqloud] :-)
    Or [a provider that accepts bitcoin][btcvps].
-3. cd to your key storage, generate a keypair for SSH (`ssh-keygen -t rsa -f id_rsa_scsc -b 4096`) with a passphrase.
+3. cd to your key storage, generate a keypair for SSH:
+        
+        ssh-keygen -t rsa -f id_rsa_scsc_oldssh -b 4096
+        openssl pkcs8 -topk8 -v2 aes-256-cbc -in id_rsa_scsc_oldssh -out id_rsa_scsc
+        chmod 0600 id_rsa_scsc
+        mv id_rsa_scsc_oldssh.pub id_rsa_scsc.pub
+        rm -P id_rsa_scsc_oldssh
+   The second command here (`openssl`) is used to [improve security of the key][sshkey].
+   It acts like a passphrase change.
+
 4. Send the public key to the hosting provider.  
    For GreenQloud: install [euca2ools][euca2ools], sign in to my.greenqloud.com, User → API Access → Credentials → Download .zip, then something like this:
         
@@ -139,7 +148,7 @@ You need to use the HTTP proxy (see Browser setup above) to access I2P and Tor h
 ### ZNC (the IRC bouncer)
 
 [ZNC][znc] 1.0 is running at port 6667, webadmin at [znc.scsc](https://znc.scsc).  
-The default username and password are `admin` and `password`.
+The default username and password are `admin` and `password`.  
 
 There are some networks preconfigured:
 
@@ -148,10 +157,18 @@ There are some networks preconfigured:
 2. `irc2p` is [the I2P IRC network][irc2p].
 3. `onionnet` is [the Tor-powered OnionNet][onionnet]
 
+Recommended IRC clients:
+
+- OS X: [Textual][textual]
+- iOS: [Palaver][palaver] ([znc-palaver][znc-palaver] is installed!)
+- Android: [HoloIRC][holoirc]
+
 ### Coldsweat (RSS/Atom feed reader)
 
 [Coldsweat][coldsweat] is running at [coldsweat.scsc](https://coldsweat.scsc).  
 Default username and password are both `coldsweat`.
+
+Coldsweat's API is compatible with [Fever][fever], so you can use clients like [Reeder for iOS][reeder] and [Press for Android][press].
 
 ### Poche (read it later)
 
@@ -176,7 +193,14 @@ The [Transmission][transmission] web and remote interface is available at [trans
 [transmission]: http://transmissionbt.com/
 [weave]: http://docs.services.mozilla.com/howtos/run-sync.html
 [znc]: http://wiki.znc.in/ZNC
+[textual]: http://www.codeux.com/textual/
+[palaver]: http://palaverapp.com/
+[znc-palaver]: https://github.com/Palaver/znc-palaver
+[holoirc]: https://play.google.com/store/apps/details?id=com.fusionx.lightirc
 [coldsweat]: https://github.com/passiomatic/coldsweat
+[fever]: http://feedafever.com/
+[reeder]: http://reederapp.com/ios/
+[press]: http://twentyfivesquares.com/press/
 [poche]: http://www.inthepoche.com/
 [cloudns]: https://cloudns.com.au/
 [dotbit]: http://dot-bit.org/Main_Page
@@ -205,3 +229,4 @@ The [Transmission][transmission] web and remote interface is available at [trans
 [freenode-tor]: http://freenode.net/irc_servers.shtml#tor
 [irc2p]: http://killyourtv.i2p.us/i2p/ircservers/irc2p/
 [onionnet]: http://pastebin.com/9aTv2thj
+[sshkey]: http://martin.kleppmann.com/2013/05/24/improving-security-of-ssh-private-keys.html
