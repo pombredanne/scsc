@@ -1,4 +1,4 @@
-%w(unzip lame openjdk-7-jre-headless).each do |p|
+%w(unzip lame openjdk-7-jdk).each do |p|
   package p do
     action :upgrade
   end
@@ -27,8 +27,10 @@ bash "unzip subsonic" do
 end
 
 user node["subsonic"]["user"] do
+  supports :manage_home => true
   shell "/bin/false"
   gid node["subsonic"]["group"]
+  home node["subsonic"]["home"]
   system true
   action :create
 end
