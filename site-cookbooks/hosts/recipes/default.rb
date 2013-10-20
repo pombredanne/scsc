@@ -87,8 +87,8 @@ web_app "weave-wsgi" do
   process_group "sync"
   process_user "sync"
   process_user_group "data"
-  processes 2
-  threads 20
+  processes 1
+  threads 5
 end
 
 web_app "coldsweat-wsgi" do
@@ -100,6 +100,6 @@ web_app "coldsweat-wsgi" do
   process_group "coldsweat"
   process_user "coldsweat"
   process_user_group "data"
-  processes 2
-  threads 20
+  processes 1
+  threads 5
 end
