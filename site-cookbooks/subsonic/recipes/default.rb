@@ -28,7 +28,7 @@ end
 
 template "/etc/init/subsonic.conf" do
   source "subsonic.upstart.conf.erb"
-  attributes(:jetty_path => jetty_path, :subsonic_path => subsonic_path)
+  variables(:jetty_path => jetty_path, :subsonic_path => subsonic_path)
   mode "0755"
 end
 
