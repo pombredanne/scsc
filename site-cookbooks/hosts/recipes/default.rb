@@ -8,6 +8,7 @@ include_recipe "apache2::mod_ssl"
 include_recipe "monit"
 include_recipe "i2p"
 include_recipe "btsync"
+include_recipe "subsonic"
 include_recipe "firefox-sync"
 include_recipe "coldsweat"
 include_recipe "poche"
@@ -63,6 +64,12 @@ web_app "transmission-proxy" do
   template "proxy.conf.erb"
   server_name "transmission.scsc"
   dest "http://localhost:#{node["transmission"]["rpc-port"]}/"
+end
+
+web_app "subsonic-proxy" do
+  template "proxy.conf.erb"
+  server_name "subsonic.scsc"
+  dest "http://localhost:#{node["subsonic"]["port"]}/"
 end
 
 web_app "poche-php" do

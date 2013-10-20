@@ -12,8 +12,10 @@ execute "Preconfigure i2p" do
   command "echo i2p i2p/daemon boolean true | debconf-set-selections"
 end
 
-package "i2p" do
-  action :upgrade
+%w(openjdk-7-jre-headless i2p).each do |p|
+  package p do
+    action :upgrade
+  end
 end
 
 group "data" do

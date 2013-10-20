@@ -1,0 +1,11 @@
+#!upstart
+description "subsonic music server on jetty-runner"
+
+start on startup
+stop on shutdown
+
+respawn
+
+script
+  start-stop-daemon --start --make-pidfile --pidfile /var/run/subsonic.pid --chuid nobody:nogroup --exec /usr/bin/java -- -jar <%= @jetty_path %> --port <%= node["subsonic"]["port"] %> <%= @subsonic_path %>
+end script

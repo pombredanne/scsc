@@ -1,4 +1,8 @@
 include_recipe "znc"
+include_recipe "tor"
+include_recipe "btsync"
+include_recipe "privoxy"
+include_recipe "subsonic"
 
 package "monit" do
   action :upgrade
@@ -15,6 +19,7 @@ pids = {
   "btsync" => "/var/run/btsync.config.pid",
   "ssh" => "/var/run/sshd.pid",
   "privoxy" => "/var/run/privoxy.pid",
+  "subsonic" => "/var/run/subsonic.pid",
   "tor-dns-proxy" => "/var/run/tor-dns-proxy.pid",
   "dnscrypt-proxy-primary" => "/var/run/dnscrypt-proxy-primary.pid",
   "dnscrypt-proxy-secondary" => "/var/run/dnscrypt-proxy-secondary.pid",
@@ -35,6 +40,7 @@ ports = {
   "dnscrypt-proxy-secondary" => 3053,
   "dnscrypt-proxy-opennic" => 4053,
   "privoxy" => node["privoxy"]["port"],
+  "subsonic" => node["subsonic"]["port"],
   "socat-freenode" => node["znc"]["socat-freenode-port"],
   "socat-onionnet" => node["znc"]["socat-onionnet-port"],
   "tor" => node["tor"]["socks-port"],
@@ -63,7 +69,7 @@ protos = {
 
 %w(apache2 openvpn ssh btsync
 dnsmasq dnscrypt-proxy-primary dnscrypt-proxy-secondary dnscrypt-proxy-opennic
-i2p tor tor-dns-proxy socat-freenode socat-onionnet privoxy
+i2p tor tor-dns-proxy socat-freenode socat-onionnet privoxy subsonic
 znc).each do |rc|
   template "/etc/monit/conf.d/#{rc}" do
     source "process.erb"
