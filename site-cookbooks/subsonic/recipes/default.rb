@@ -1,4 +1,4 @@
-%w(unzip openjdk-7-jre-headless).each do |p|
+%w(unzip lame openjdk-7-jre-headless).each do |p|
   package p do
     action :upgrade
   end
